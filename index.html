@@ -88,22 +88,22 @@
             <h2>📖 Nuestra historia ❤️</h2>
 
             <div class="evento">
-                <div class="fecha">❤️ 05/02/2026</div>
-                <div class="descripcion">El día en que comenzó la historia más bonita de mi vida.</div>
+                <div class="fecha">❤️ 28/12/2026</div>
+                <div class="descripcion">Nuestra primera salida donde hablamos y pasamos tiempo contigo sin sabes que serias el amor de mi vida para siempre.</div>
             </div>
 
             <div class="evento">
-                <div class="fecha">🌹 Nuestro primer detalle</div>
-                <div class="descripcion">Un pequeño gesto que se convirtió en un gran recuerdo.</div>
+                <div class="fecha">🌹 05/02/2026</div>
+                <div class="descripcion">Un pequeño gesto de parte de ti, un pico que me distes en el cual yo quede frio y congelado aferrandome a tus labios para siempre.</div>
             </div>
 
             <div class="evento">
-                <div class="fecha">🥹 Nuestro primer paseo</div>
-                <div class="descripcion">Caminar contigo hizo que cualquier lugar se sintiera especial.</div>
+                <div class="fecha">🥹 14/02/2026</div>
+                <div class="descripcion">14 de febrero dia del amor y la amistad, aqui ya estaba completamente seguro de que tu eras el amor de mi vida y que lo serás para siempre, no podia quedarme con las manos vacias, y tenia que si o si darte un detalle especialmente para ti.</div>
             </div>
 
             <div class="evento">
-                <div class="fecha">💖 Hoy</div>
+                <div class="fecha">🖤 Presente</div>
                 <div class="descripcion">Seguimos escribiendo esta historia, un día a la vez.</div>
             </div>
         </section>
@@ -130,13 +130,13 @@
 
         <!-- ANIVERSARIO -->
         <section class="aniversario">
-            <h2>📅 Nuestro próximo aniversario ❤️</h2>
+            <h2>📅 El restante que nos queda juntos... ❤️</h2>
 
             <div class="contadorAniversario">
-                <div><span id="diasA">0</span><p>Días</p></div>
-                <div><span id="horasA">0</span><p>Horas</p></div>
-                <div><span id="minutosA">0</span><p>Minutos</p></div>
-                <div><span id="segundosA">0</span><p>Segundos</p></div>
+                <div><span id="diasA">∞</span><p>Días</p></div>
+                <div><span id="horasA">∞</span><p>Horas</p></div>
+                <div><span id="minutosA">∞</span><p>Minutos</p></div>
+                <div><span id="segundosA">∞</span><p>Segundos</p></div>
             </div>
 
             <p class="mensajeAniversario">
@@ -164,38 +164,98 @@
         <button id="btnMusica">🎵 Música</button>
 
         <audio id="audio" loop>
-            <source src="audio/standbyme.mp3" type="audio/mpeg">
+            <source src="Ben E. King  Stand By Me [Letra  Video].mp3" type="audio/mpeg">
         </audio>
 
-        <!-- FINAL -->
-        <section class="finalHistoria">
-            <h2>❤️ Antes de irte... ❤️</h2>
-            <p>Quiero hacerte una última pregunta.</p>
+        <!-- JUEGUITO INTERACTIVO -->
+<section class="jueguito-amor">
+    <h2>🎮 Una pregunta seria...</h2>
+    <h3 id="preguntaJuego">¿Me amas hoy más que ayer? 🥺</h3>
+    
+    <div class="contenedor-botones-juego">
+        <button id="btnSiJuego">¡SÍ, OBVIO! ❤️</button>
+        <button id="btnNoJuego">No, para nada 😜</button>
+    </div>
+    
+    <!-- Mensaje sorpresa cuando logre darle al SÍ -->
+    <div id="mensajeVictoria">
+        🙈Sabia que dirias eso jsjsjsjs, te amo mucho mi niña hermosa 🖤
+    </div>
+</section>
 
-            <button id="btnFinal">💖 ¿Sabes cuánto te amo? 💖</button>
-        </section>
+<!-- SECCIÓN PLAYLIST INTERACTIVA -->
+<section class="seccion-playlist">
+    <h2>🎵 Las canciones que me recuerdan a ti</h2>
+    <p class="subtitulo-playlist">Haz clic en cada portada para escuchar un pedacito y leer lo que siento ✨</p>
 
-    </main>
+    <div class="contenedor-playlist">
+        <!-- Tarjeta de Canción 1 -->
+        <div class="tarjeta-cancion" onclick="cambiarCancion(0)">
+            <div class="disco-icono">💿</div>
+            <h3>Se dice de mi</h3>
+            <p>Betty la fea</p>
+        </div>
 
-    <!-- PANTALLA FINAL -->
-    <div id="pantallaFinal">
-        <div class="mensajeFinal">
-            <h1>❤️</h1>
-            <h2>
-                No existe un reloj,<br>
-                ni un contador,<br>
-                capaz de medir<br>
-                todo lo que siento por ti.
-            </h2>
+        <!-- Tarjeta de Canción 2 -->
+        <div class="tarjeta-cancion" onclick="cambiarCancion(1)">
+            <div class="disco-icono">💿</div>
+            <h3>Contigo</h3>
+            <p>Los Panchos</p>
+        </div>
 
-            <p>
-                Gracias por formar parte de mi vida.<br><br>
-                Te elegiría una y otra vez.<br><br>
-                ❤️ Alejo & Dannita ❤️
-            </p>
+        <!-- Tarjeta de Canción 3 -->
+        <div class="tarjeta-cancion" onclick="cambiarCancion(2)">
+            <div class="disco-icono">💿</div>
+            <h3>Quimica Mayor</h3>
+            <p>Mon Laferte</p>
+        </div>
+
+        <!-- Tarjeta de Canción 4 -->
+        <div class="tarjeta-cancion" onclick="cambiarCancion(3)">
+            <div class="disco-icono">💿</div>
+            <h3>Te amo, Te extraño</h3>
+            <p>Guayacán Orquesta</p>
         </div>
     </div>
 
-    <script src="amm.js"></script>
+    <!-- Visor de la dedicatoria dinámica -->
+    <div id="visorDedicatoria">
+        <h4 id="tituloDedicatoria">Selecciona una canción arriba 🎧</h4>
+        <p id="letraDedicatoria">"Aquí aparecerá la letra y mi mensaje para ti..."</p>
+    </div>
+    <!-- Reproductor oculto exclusivo para la playlist -->
+    <audio id="audioPlaylist" loop></audio>
+</section>
+</section>
+
+        <!-- FINAL -->
+        <section class="finalHistoria">
+        <h2>❤️ Antes de irte... ❤️</h2>
+        <p>Quiero hacerte una última pregunta.</p>
+
+        <button id="btnFinal">💖 ¿Sabes cuánto te amo? 💖</button>
+</section>
+
+</main>
+
+<div id="pantallaFinal">
+    <div class="mensajeFinal">
+        <h1 class="corazon-latiendo">❤️</h1>
+        <h2>
+            No hay nada en este mundo,<br>
+            capaz de medir<br>
+            todo lo que siento por ti.
+        </h2>
+
+        <p>
+            Gracias por formar parte de mi vida.<br><br>
+            Te amo six seven millones.<br><br>
+        </p>
+        
+        <button id="btnVolver" style="margin-top: 30px; font-size: 16px; padding: 12px 30px; background: rgba(255,255,255,0.2); border: 2px solid white;">✨ Volver al inicio</button>
+    </div>
+</div>
+
+<script src="amm.js"></script>
 </body>
 </html>

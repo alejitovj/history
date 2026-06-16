@@ -292,8 +292,176 @@ Te amo infinitamente 🖤`;
 
     if (caja && mensajeOculto) {
         caja.addEventListener("click", () => {
-            caja.innerHTML = "💖";
+            caja.innerHTML = "🖤";
             mensajeOculto.style.display = "block";
         });
     }
 });
+// ==============================
+    // ACCIÓN DE LA PANTALLA FINAL ❤️
+    // ==============================
+    const btnFinal = document.getElementById("btnFinal");
+    const pantallaFinal = document.getElementById("pantallaFinal");
+    const btnVolver = document.getElementById("btnVolver");
+
+    if (btnFinal && pantallaFinal) {
+        btnFinal.addEventListener("click", function () {
+            
+            // 1. Cambiamos el texto del botón momentáneamente para generar expectativa
+            btnFinal.textContent = "✨ Espera... ✨";
+            
+            setTimeout(() => {
+                // 2. Mostramos la pantalla final con la clase CSS animada
+                pantallaFinal.classList.add("mostrar");
+
+                // 3. Lanzamos una lluvia masiva de corazones super rápida
+                for (let i = 0; i < 150; i++) {
+                    setTimeout(() => {
+                        const corazon = document.createElement("div");
+                        corazon.className = "petalo";
+                        corazon.innerHTML = Math.random() > 0.5 ? "💖" : "❤️";
+                        corazon.style.left = Math.random() * 100 + "vw";
+                        corazon.style.fontSize = (20 + Math.random() * 30) + "px";
+                        corazon.style.animationDuration = (2 + Math.random() * 3) + "s"; // Más rápidos
+                        
+                        document.body.appendChild(corazon);
+                        setTimeout(() => corazon.remove(), 5000);
+                    }, i * 20);
+                }
+            }, 600);
+        });
+    }
+
+    // Acción para cerrar la pantalla de créditos y regresar al contador
+    if (btnVolver && pantallaFinal) {
+        btnVolver.addEventListener("click", function() {
+            pantallaFinal.classList.remove("mostrar");
+            if (btnFinal) btnFinal.innerHTML = "💖 ¿Sabes cuánto te amo? 💖";
+        });
+    }
+    // ==============================
+    // JUEGUITO BOTÓN ESQUIVO 🎮
+    // ==============================
+    const btnNo = document.getElementById("btnNoJuego");
+    const btnSi = document.getElementById("btnSiJuego");
+    const mensajeVictoria = document.getElementById("mensajeVictoria");
+    const preguntaJuego = document.getElementById("preguntaJuego");
+
+    function moverBotonNo() {
+        // Calculamos posiciones aleatorias basadas en el tamaño de la pantalla
+        // Le restamos 100 y 50 para que el botón no se salga de los bordes visibles
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 80);
+        
+        // Convertimos el botón a posición fija para que salte por toda la pantalla del navegador
+        btnNo.style.position = "fixed";
+        btnNo.style.left = x + "px";
+        btnNo.style.top = y + "px";
+    }
+
+    if (btnNo) {
+        // Se activa cuando pasan el mouse en PC
+        btnNo.addEventListener("mouseover", moverBotonNo);
+        // Se activa cuando intentan tocarlo en el celular
+        btnNo.addEventListener("touchstart", function(e) {
+            e.preventDefault(); // Evita que haga el click por error
+            moverBotonNo();
+        });
+    }
+
+    if (btnSi && mensajeVictoria) {
+        btnSi.addEventListener("click", function() {
+            // Mostramos el mensaje de victoria
+            mensajeVictoria.style.display = "block";
+            preguntaJuego.textContent = "¡Sabía que dirías que sí! 😍💖";
+            
+            // Escondemos el botón NO porque ya ganó
+            if (btnNo) btnNo.style.display = "none";
+            btnSi.style.transform = "scale(1)";
+            btnSi.disabled = true; // Desactivar para que no sature
+
+            // Lanzamos una mini lluvia de corazones de victoria instantánea
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const c = document.createElement("div");
+                    c.className = "petalo";
+                    c.innerHTML = "🥰";
+                    c.style.left = Math.random() * 100 + "vw";
+                    c.style.fontSize = (20 + Math.random() * 20) + "px";
+                    c.style.animationDuration = (3 + Math.random() * 2) + "s";
+                    document.body.appendChild(c);
+                    setTimeout(() => c.remove(), 5000);
+                }, i * 20);
+            }
+        });
+    }
+// ==============================
+    // PLAYLIST CON AUDIO ACTIVO 🎵
+    // ==============================
+    const datosCanciones = [
+        {
+            titulo: "🎵 Intro de Betty la fea",
+            archivo: "betty.mpeg",
+            dedicatoria: `🎤 "Se dice que soy fea, que camino a lo malevo, que soy chueca..."
+
+            🌹 Elegi este fragmento sabiendo que no puedo volver a escuchar esto de la misma manera, sé que en mi vida hay una niña hermosa que le encanta esta telenovela y se la ha visto muchas veces y eso me hace seguir pensando en ti.`
+        },
+        {
+            titulo: "🌹 Contigo - Los Panchos",
+            archivo: "contigo.mpeg",
+            dedicatoria: `🎤 "Te puedo yo jurar ante un altar Mi amor sincero, A todo el mundo le puedes contar Que sí te quiero..."
+
+            🖤 Como dice la letra, te podré jurar frente a un altar el amor tan grande que te tengo, como, compañera de vida, novia y esposa, lo que realmente seremos mas adelante en nuestras vidas, para que tengas un pedacito lo claro que es mi amor por ti.`
+        },
+        {
+            titulo: "💥 Quimica Mayor - Mon Laferte",
+            archivo: "quimica.mpeg",
+            dedicatoria: `🎤 "Estamos tan enamorados Solos en el mundo, cómo un par de adolescentes Qué se aman locamente..."
+
+            🙈 Lo nuestro no fue por decision fue una quimica tan grande que tuvimos mucho mas antes de conocernos profundamente, la quimica que siento en ti es tan grande que podria estallar de puro amor por ti, teniendo un unico nombre Danna Zharick Cubillos Malagon`
+        },
+        {
+            titulo: "✨ Te amo, Te extraño - Guayacán Orquesta",
+            archivo: "teamo.mpeg",
+            dedicatoria: `🎤 "Yo deseaba encontrar un día Motivos de llenar mi vida Sin saberlo como adivina Llegaste tú..."
+
+            💖 Yo pedi una mujer grandiosa y linda como tu, deseando que llegase en mi vida sin importar el tiempo ahora que estas a mi lado, quiero decirte que no quiero que te vayas de mi vida, ya que la mayor parte de mi felicidad y de lo que soy es por ti.`
+        }
+    ];
+
+    window.cambiarCancion = function(indice) {
+        const tituloVisor = document.getElementById("tituloDedicatoria");
+        const letraVisor = document.getElementById("letraDedicatoria");
+        const visor = document.getElementById("visorDedicatoria");
+        
+        // Reproductores de audio
+        const audioFondo = document.getElementById("audio"); // El de toda la página
+        const audioPlaylist = document.getElementById("audioPlaylist"); // El de la sección
+
+        if (tituloVisor && letraVisor && visor && audioPlaylist) {
+            
+            // 1. Pausamos la música general de fondo para que no se mezclen
+            if (audioFondo && !audioFondo.paused) {
+                audioFondo.pause();
+                const btnMusica = document.getElementById("btnMusica");
+                if (btnMusica) btnMusica.textContent = "🎵 Música";
+            }
+
+            // 2. Efecto visual de transición
+            visor.style.opacity = "0.3";
+            visor.style.transform = "scale(0.98)";
+
+            setTimeout(() => {
+                // 3. Cambiamos textos
+                tituloVisor.textContent = datosCanciones[indice].titulo;
+                letraVisor.textContent = datosCanciones[indice].dedicatoria;
+                
+                // 4. Cargamos y reproducimos el pedacito de música
+                audioPlaylist.src = datosCanciones[indice].archivo;
+                audioPlaylist.play().catch(err => console.log("Error al reproducir audio: ", err));
+
+                visor.style.opacity = "1";
+                visor.style.transform = "scale(1)";
+            }, 300);
+        }
+    };
