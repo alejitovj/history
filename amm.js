@@ -396,13 +396,28 @@ Te amo infinitamente 🖤`;
         });
     }
 // ====================================================
-    // PLAYLIST CON AUDIO ACTIVO Y CONTROL DE VOLUMEN 🎵💿
+    // MODO NEÓN ROMÁNTICO INTERACTIVO 🌙✨
+    // ====================================================
+    const btnModoLuna = document.getElementById("btnModoLuna");
+    if (btnModoLuna) {
+        btnModoLuna.addEventListener("click", function() {
+            document.body.classList.toggle("modo-neon");
+            if (document.body.classList.contains("modo-neon")) {
+                btnModoLuna.innerHTML = "☀️";
+            } else {
+                btnModoLuna.innerHTML = "🌙";
+            }
+        });
+    }
+
+    // ====================================================
+    // PLAYLIST CON EFECTO FADE DE AUDIO 🎵💿
     // ====================================================
     const datosCanciones = [
         {
             titulo: "🎵 Intro de Betty la fea",
             archivo: "betty.mpeg",
-            volumen: 0.5, // 👈 1.0 es el máximo, 0.5 es la mitad. ¡Modifica este número a tu gusto!
+            volumen: 0.5,
             dedicatoria: `🎤 "Se dice que soy fea, que camino a lo malevo, que soy chueca..."
 
             🌹 Elegí este fragmento sabiendo que no puedo volver a escuchar esto de la misma manera, sé que en mi vida hay una niña hermosa que le encanta esta telenovela y se la ha visto muchas veces y eso me hace seguir pensando en ti.`
@@ -410,7 +425,7 @@ Te amo infinitamente 🖤`;
         {
             titulo: "🌹 Contigo - Los Panchos",
             archivo: "contigo.mpeg",
-            volumen: 1.0, // 👈 Si este se escucha pasito, déjalo en 1.0 (máximo volumen)
+            volumen: 1.0,
             dedicatoria: `🎤 "Te puedo yo jurar ante un altar Mi amor sincero, A todo el mundo le puedes contar Que sí te quiero..."
 
             🖤 Como dice la letra, te podré jurar frente a un altar el amor tan grande que te tengo, como compañera de vida, novia y esposa, lo que realmente seremos más adelante en nuestras vidas, para que tengas un pedacito de lo claro que es mi amor por ti.`
@@ -418,7 +433,7 @@ Te amo infinitamente 🖤`;
         {
             titulo: "💥 Química Mayor - Mon Laferte",
             archivo: "quimica.mpeg",
-            volumen: 0.2, // 👈 Si suena muy duro, bájale a 0.6 o 0.7
+            volumen: 0.2,
             dedicatoria: `🎤 "Estamos tan enamorados Solos en el mundo, cómo un par de adolescentes Qué se aman locamente..."
 
             🙈 Lo nuestro no fue por decisión, fue una química tan grande que tuvimos mucho antes de conocernos profundamente. La química que siento en ti es tan grande que podría estallar de puro amor por ti, teniendo un único nombre Danna Zharick Cubillos Malagón.`
@@ -426,75 +441,111 @@ Te amo infinitamente 🖤`;
         {
             titulo: "✨ Te amo, Te extraño - Guayacán Orquesta",
             archivo: "teamo.mpeg",
-            volumen: 0.5, // 👈 La salsa suele venir con trompetas estalladas, mejor bajarle un tris
+            volumen: 0.5,
             dedicatoria: `🎤 "Yo deseaba encontrar un día Motivos de llenar mi vida Sin saberlo como adivina Llegaste tú..."
 
             💖 Yo pedí una mujer grandiosa y linda como tú, deseando que llegase a mi vida sin importar el tiempo. Ahora que estás a mi lado, quiero decirte que no quiero que te vayas de mi vida, ya que la mayor parte de mi felicidad y de lo que soy es por ti.`
         }
     ];
 
-    // Función global configurada para activar/pausar la música, la animación y nivelar volumen
+    // 🔥 VARIABLE DE CONTROL DEFINITIVA
+    // Nos dice el índice de la canción que está sonando actualmente. Si no hay ninguna, es -1.
+    let indiceCancionActual = -1;
+
+    // FUNCIÓN AUXILIAR: Baja el volumen suavemente (Fade Out) y DETIENE la música
+    function fadeOutAudio(audioElement, callback) {
+        if (!audioElement || audioElement.paused) {
+            if (callback) callback();
+            return;
+        }
+        let vol = audioElement.volume;
+        let intervalo = setInterval(() => {
+            if (vol > 0.05) {
+                vol -= 0.05;
+                audioElement.volume = vol;
+            } else {
+                clearInterval(intervalo);
+                audioElement.pause(); 
+                audioElement.volume = 0; 
+                if (callback) callback();
+            }
+        }, 30); 
+    }
+
+    // FUNCIÓN AUXILIAR: Sube el volumen suavemente (Fade In)
+    function fadeInAudio(audioElement, volumenDestino) {
+        audioElement.volume = 0;
+        audioElement.play().then(() => {
+            let vol = 0;
+            let intervalo = setInterval(() => {
+                if (vol < volumenDestino - 0.05) {
+                    vol += 0.05;
+                    audioElement.volume = vol;
+                } else {
+                    audioElement.volume = volumenDestino;
+                    clearInterval(intervalo);
+                }
+            }, 30);
+        }).catch(err => console.log("Error en Fade In: ", err));
+    }
+
+    // Función principal adaptada con la nueva lógica del interruptor
     window.cambiarCancion = function(indice, elemento) {
         const tituloVisor = document.getElementById("tituloDedicatoria");
         const letraVisor = document.getElementById("letraDedicatoria");
         const visor = document.getElementById("visorDedicatoria");
         
-        // Reproductores de audio
         const audioFondo = document.getElementById("audio"); 
         const audioPlaylist = document.getElementById("audioPlaylist");
 
         if (tituloVisor && letraVisor && visor && audioPlaylist) {
             
-            // Si das click a la tarjeta que YA está sonando, se pausa
-            if (elemento.classList.contains('sonando') && !audioPlaylist.paused) {
-                audioPlaylist.pause();
-                elemento.classList.remove('sonando');
-                return;
-            }
-
-            // Si estaba pausada pero era la misma tarjeta, le vuelve a dar play
-            if (elemento.classList.contains('sonando') && audioPlaylist.paused) {
-                audioPlaylist.play().catch(err => console.log("Error al reproducir: ", err));
+            // 🛑 SI DA CLICK EN LA TARJETA QUE YA ESTÁ SONANDO ACTIVA: La pausamos por completo
+            if (indiceCancionActual === indice) {
+                fadeOutAudio(audioPlaylist, () => {
+                    elemento.classList.remove('sonando');
+                    indiceCancionActual = -1; // Reseteamos el control para que quede libre
+                });
                 return;
             }
             
-            // 1. Pausamos la música general de fondo
+            // 1. Apagamos la música general de fondo si venía sonando
             if (audioFondo && !audioFondo.paused) {
-                audioFondo.pause();
-                const btnMusica = document.getElementById("btnMusica");
-                if (btnMusica) btnMusica.textContent = "🎵 Música";
+                fadeOutAudio(audioFondo, () => {
+                    const btnMusica = document.getElementById("btnMusica");
+                    if (btnMusica) btnMusica.textContent = "🎵 Música";
+                });
             }
 
-            // 2. Quitamos la animación de giro de cualquier otro disco activo
-            document.querySelectorAll('.tarjeta-cancion').forEach(tarjeta => {
-                tarjeta.classList.remove('sonando');
-            });
+            // 2. Si había otra canción de la playlist activa, primero la desvanecemos
+            fadeOutAudio(audioPlaylist, () => {
+                
+                // 3. Quitamos el giro de los vinilos a todas las tarjetas
+                document.querySelectorAll('.tarjeta-cancion').forEach(tarjeta => {
+                    tarjeta.classList.remove('sonando');
+                });
 
-            // 3. Activamos el giro en la tarjeta actual
-            if (elemento) {
+                // 4. Activamos el giro en la tarjeta actual y actualizamos el índice de control
                 elemento.classList.add('sonando');
-            }
+                indiceCancionActual = indice; // Guardamos cuál está sonando ahora
 
-            // 4. Efecto visual de transición en el texto
-            visor.style.opacity = "0.3";
-            visor.style.transform = "scale(0.98)";
+                // 5. Animación del visor de textos
+                visor.style.opacity = "0.3";
+                visor.style.transform = "scale(0.98)";
 
-            setTimeout(() => {
-                // 5. Cambiamos textos dinámicamente
-                tituloVisor.textContent = datosCanciones[indice].titulo;
-                letraVisor.textContent = datosCanciones[indice].dedicatoria;
-                
-                // 6. Cargamos el archivo, NIVELAMOS EL VOLUMEN y damos play
-                audioPlaylist.src = datosCanciones[indice].archivo;
-                
-                // 🔥 AQUÍ SE CONFIGURA EL VOLUMEN AUTOMÁTICO DE CADA CANCIÓN:
-                // Si el volumen viene definido en el objeto lo usa, si no, por defecto queda en 1.0
-                audioPlaylist.volume = datosCanciones[indice].volumen !== undefined ? datosCanciones[indice].volumen : 1.0;
-                
-                audioPlaylist.play().catch(err => console.log("Error al reproducir audio: ", err));
+                setTimeout(() => {
+                    tituloVisor.textContent = datosCanciones[indice].titulo;
+                    letraVisor.textContent = datosCanciones[indice].dedicatoria;
+                    
+                    // 6. Cargamos el audio y le metemos el Fade In pro
+                    audioPlaylist.src = datosCanciones[indice].archivo;
+                    const volObjetivo = datosCanciones[indice].volumen !== undefined ? datosCanciones[indice].volumen : 1.0;
+                    
+                    fadeInAudio(audioPlaylist, volObjetivo);
 
-                visor.style.opacity = "1";
-                visor.style.transform = "scale(1)";
-            }, 300);
+                    visor.style.opacity = "1";
+                    visor.style.transform = "scale(1)";
+                }, 300);
+            });
         }
     };

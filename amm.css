@@ -884,3 +884,99 @@ FINAL
     .disco-icono { font-size: 35px; }
     #letraDedicatoria { font-size: 17px; }
 }
+/* ====================================================
+   MODO NEÓN ROMÁNTICO 🌙✨
+==================================================== */
+/* Botón flotante para cambiar de modo */
+#btnModoLuna {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid white;
+    font-size: 24px;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#btnModoLuna:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+/* --- ESTILOS CUANDO EL MODO NEÓN ESTÁ ACTIVO --- */
+body.modo-neon {
+    background: #0d0b14 !important; /* Fondo oscuro profundo */
+    transition: background 1s ease;
+}
+
+body.modo-neon .contenido h1 {
+    color: #ff007f !important;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+}
+
+body.modo-neon .seccion-playlist {
+    background: rgba(13, 11, 20, 0.6);
+    border: 2px solid #bd00ff;
+    box-shadow: 0 0 30px rgba(189, 0, 255, 0.4);
+}
+
+body.modo-neon .tarjeta-cancion {
+    background: #1a1625;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+body.modo-neon .tarjeta-cancion h3 {
+    color: #00f0ff;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+
+body.modo-neon .tarjeta-cancion p {
+    color: #ff007f;
+}
+
+body.modo-neon .tarjeta-cancion.sonando {
+    background: #251f38;
+    border: 2px solid #00f0ff;
+}
+
+body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco {
+    box-shadow: 0 0 25px #00f0ff;
+    border: 4px solid #00f0ff;
+}
+
+body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco::after {
+    background: #251f38;
+    border: 2px solid #00f0ff;
+}
+
+body.modo-neon #visorDedicatoria {
+    background: #161224;
+    border: 1px solid #ff007f;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+}
+
+body.modo-neon #tituloDedicatoria {
+    color: #00f0ff;
+    text-shadow: 0 0 8px #00f0ff;
+}
+
+body.modo-neon #letraDedicatoria {
+    color: #e0dbec;
+}
+
+/* Modificaciones automáticas para otras secciones en modo noche */
+body.modo-neon .carta, body.modo-neon .razones, body.modo-neon .timeline, body.modo-neon .regalo, body.modo-neon .aniversario {
+    background: rgba(26, 22, 37, 0.8) !important;
+    border: 1px solid #bd00ff;
+    color: white !important;
+    box-shadow: 0 0 20px rgba(189, 0, 255, 0.2);
+}
+body.modo-neon .carta p, body.modo-neon .timeline .descripcion {
+    color: #e0dbec !important;
+}
