@@ -980,3 +980,85 @@ body.modo-neon .carta, body.modo-neon .razones, body.modo-neon .timeline, body.m
 body.modo-neon .carta p, body.modo-neon .timeline .descripcion {
     color: #e0dbec !important;
 }
+/* ====================================================
+   RESPONSIVE DESIGN: OPTIMIZACIÓN PARA CELULARES 📱
+==================================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Ajustamos el contenedor principal para que deje aire a los lados */
+    .contenido {
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* 2. La sección de la playlist ya no se verá apretada */
+    .seccion-playlist {
+        padding: 15px !important;
+        margin: 10px auto !important;
+        width: 95% !important;
+        display: flex;
+        flex-direction: column; /* Coloca el visor y las tarjetas uno abajo del otro */
+        gap: 20px;
+    }
+
+    /* 3. Las tarjetas de las canciones se acomodan a lo ancho */
+    .contenedor-tarjetas {
+        display: flex;
+        flex-direction: column; /* Tarjetas en fila vertical, no amontonadas */
+        gap: 15px;
+        width: 100% !important;
+    }
+
+    .tarjeta-cancion {
+        width: 100% !important; /* Que ocupe todo el ancho disponible del cel */
+        box-sizing: border-box;
+        padding: 12px !important;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    /* Reducimos un tris el tamaño del disco giratorio para que quepa el texto al lado */
+    .contenedor-foto-disco {
+        width: 60px !important;
+        height: 60px !important;
+        min-width: 60px; /* Evita que el círculo se deforme o se aplaste */
+    }
+
+    .tarjeta-cancion h3 {
+        font-size: 16px !important; /* Texto más cómodo para leer en cel */
+        margin-bottom: 2px !important;
+    }
+
+    .tarjeta-cancion p {
+        font-size: 13px !important;
+    }
+
+    /* 4. Ajustamos el visor donde Danna va a leer tus dedicatorias */
+    #visorDedicatoria {
+        width: 100% !important;
+        box-sizing: border-box;
+        padding: 20px 15px !important;
+        min-height: 250px !important; /* Le da buena altura para que la letra no se salga */
+    }
+
+    #tituloDedicatoria {
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
+    }
+
+    #letraDedicatoria {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        white-space: pre-line; /* Mantiene los saltos de línea bien organizados */
+    }
+    
+    /* 5. Ajuste extra para el botón de la luna para que no tape nada importante */
+    #btnModoLuna {
+        bottom: 15px !important;
+        right: 15px !important;
+        padding: 10px !important;
+        font-size: 20px !important;
+    }
+}
