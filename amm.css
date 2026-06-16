@@ -1,7 +1,6 @@
 /* ===========================
    FUENTES Y CONFIGURACIÓN
 =========================== */
-
 *{
     margin:0;
     padding:0;
@@ -9,1449 +8,624 @@
 }
 
 body{
-
     font-family:'Poppins',sans-serif;
-
     background:linear-gradient(135deg,#ff5f9e,#ff8fb1,#ffc2d1,#ffe0ea);
-
     background-size:400% 400%;
-
     animation:fondo 15s ease infinite;
-
     overflow-x:hidden;
-
     min-height:100vh;
-
 }
 
 /* Fondo animado */
-
 @keyframes fondo{
-
-0%{
-background-position:0% 50%;
-}
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
-
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
 }
 
 /* ===========================
 CONTENEDOR PRINCIPAL
 =========================== */
-
 .contenido{
-
-width:90%;
-
-max-width:1200px;
-
-margin:auto;
-
-padding:50px 20px;
-
-text-align:center;
-
+    display: none;       /* Oculto al inicio para evitar parpadeos */
+    opacity: 0;          /* Preparado para el fade-in de JS */
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
+    text-align:center;
 }
 
 /* ===========================
 TÍTULOS
 =========================== */
-
 h1{
-
-font-family:'Great Vibes',cursive;
-
-font-size:85px;
-
-color:white;
-
-text-shadow:
-0 0 10px hotpink,
-0 0 20px hotpink,
-0 0 40px deeppink;
-
-animation:latido 2s infinite;
-
+    font-family:'Great Vibes',cursive;
+    font-size:85px;
+    color:white;
+    text-shadow:
+        0 0 10px hotpink,
+        0 0 20px hotpink,
+        0 0 40px deeppink;
+    animation:latido 2s infinite;
 }
 
 h2{
-
-margin-top:15px;
-
-font-size:30px;
-
-color:white;
-
-font-weight:300;
-
-letter-spacing:2px;
-
+    margin-top:15px;
+    font-size:30px;
+    color:white;
+    font-weight:300;
+    letter-spacing:2px;
 }
 
 /* ===========================
 LATIDO
 =========================== */
-
 @keyframes latido{
-
-0%{
-
-transform:scale(1);
-
-}
-
-50%{
-
-transform:scale(1.05);
-
-}
-
-100%{
-
-transform:scale(1);
-
-}
-
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.05); }
+    100%{ transform:scale(1); }
 }
 
 /* ===========================
 CONTADOR
 =========================== */
-
 .contador{
-
-margin-top:60px;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(20px);
-
-padding:35px;
-
-border-radius:30px;
-
-box-shadow:0 0 40px rgba(255,255,255,.2);
-
+    margin-top:60px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    padding:35px;
+    border-radius:30px;
+    box-shadow:0 0 40px rgba(255,255,255,.2);
 }
 
 .contador h3{
-
-font-size:35px;
-
-margin-bottom:30px;
-
-color:white;
-
+    font-size:35px;
+    margin-bottom:30px;
+    color:white;
 }
 
 .tiempo{
-
-display:flex;
-
-justify-content:center;
-
-gap:25px;
-
-flex-wrap:wrap;
-
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
 }
 
 .tiempo div{
-
-background:white;
-
-padding:25px;
-
-border-radius:20px;
-
-width:150px;
-
-transition:.5s;
-
-box-shadow:0 0 20px rgba(255,20,147,.3);
-
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:150px;
+    transition:.5s;
+    box-shadow:0 0 20px rgba(255,20,147,.3);
 }
 
 .tiempo div:hover{
-
-transform:translateY(-12px) scale(1.05);
-
-box-shadow:0 0 35px hotpink;
-
+    transform:translateY(-12px) scale(1.05);
+    box-shadow:0 0 35px hotpink;
 }
 
 .tiempo span{
-
-font-size:55px;
-
-font-weight:bold;
-
-color:#ff006e;
-
+    font-size:55px;
+    font-weight:bold;
+    color:#ff006e;
 }
 
 .tiempo p{
-
-font-size:20px;
-
-margin-top:8px;
-
+    font-size:20px;
+    margin-top:8px;
 }
 
 /* ===========================
 CARTA
 =========================== */
-
 .carta{
-
-margin-top:60px;
-
-background:rgba(255,255,255,.9);
-
-padding:45px;
-
-border-radius:30px;
-
-line-height:2;
-
-font-size:22px;
-
-color:#6d214f;
-
-box-shadow:0 0 30px rgba(0,0,0,.15);
-
-transition:.5s;
-
+    margin-top:60px;
+    background:rgba(255,255,255,.9);
+    padding:45px;
+    border-radius:30px;
+    line-height:2;
+    font-size:22px;
+    color:#6d214f;
+    box-shadow:0 0 30px rgba(0,0,0,.15);
+    transition:.5s;
 }
 
 .carta:hover{
-
-transform:scale(1.01);
-
+    transform:scale(1.01);
 }
 
 .carta h2{
-
-color:#ff006e;
-
-margin-bottom:25px;
-
-font-family:'Great Vibes',cursive;
-
-font-size:55px;
-
+    color:#ff006e;
+    margin-bottom:25px;
+    font-family:'Great Vibes',cursive;
+    font-size:55px;
 }
 
 /* ===========================
 GALERÍA
 =========================== */
-
 .galeria{
-
-margin-top:60px;
-
-display:flex;
-
-justify-content:center;
-
-gap:30px;
-
-flex-wrap:wrap;
-
+    margin-top:60px;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
 }
 
 .galeria img{
-
-width:280px;
-
-height:360px;
-
-object-fit:cover;
-
-border-radius:25px;
-
-border:5px solid white;
-
-transition:.6s;
-
-box-shadow:0 0 25px rgba(0,0,0,.25);
-
+    width:280px;
+    height:360px;
+    object-fit:cover;
+    border-radius:25px;
+    border:5px solid white;
+    transition:.6s;
+    box-shadow:0 0 25px rgba(0,0,0,.25);
 }
 
 .galeria img:hover{
-
-transform:rotate(-2deg) scale(1.08);
-
-box-shadow:0 0 35px hotpink;
-
+    transform:rotate(-2deg) scale(1.08);
+    box-shadow:0 0 35px hotpink;
 }
 
 /* ===========================
 BOTONES
 =========================== */
-
 button{
-
-margin:25px;
-
-padding:18px 45px;
-
-border:none;
-
-border-radius:50px;
-
-font-size:20px;
-
-cursor:pointer;
-
-color:white;
-
-background:linear-gradient(90deg,#ff006e,#ff4d94);
-
-transition:.5s;
-
-box-shadow:0 0 20px hotpink;
-
+    margin:25px;
+    padding:18px 45px;
+    border:none;
+    border-radius:50px;
+    font-size:20px;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(90deg,#ff006e,#ff4d94);
+    transition:.5s;
+    box-shadow:0 0 20px hotpink;
 }
 
 button:hover{
-
-transform:scale(1.08);
-
-box-shadow:0 0 40px deeppink;
-
+    transform:scale(1.08);
+    box-shadow:0 0 40px deeppink;
 }
 
 /* ===========================
 ESTRELLAS
 =========================== */
-
 #estrellas{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-pointer-events:none;
-
-background-image:
-radial-gradient(white 1px,transparent 1px);
-
-background-size:70px 70px;
-
-opacity:.35;
-
-animation:moverEstrellas 40s linear infinite;
-
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background-image: radial-gradient(white 1px,transparent 1px);
+    background-size:70px 70px;
+    opacity:.35;
+    animation:moverEstrellas 40s linear infinite;
 }
 
 @keyframes moverEstrellas{
-
-from{
-
-transform:translateY(0);
-
-}
-
-to{
-
-transform:translateY(100px);
-
-}
-
+    from{ transform:translateY(0); }
+    to{ transform:translateY(100px); }
 }
 
 /* ===========================
 PÉTALOS
 =========================== */
-
 .petalo{
-
-position:fixed;
-
-top:-100px;
-
-font-size:30px;
-
-animation:caer linear forwards;
-
-pointer-events:none;
-
-z-index:999;
-
+    position:fixed;
+    top:-100px;
+    font-size:30px;
+    animation:caer linear forwards;
+    pointer-events:none;
+    z-index:999;
 }
 
 @keyframes caer{
-
-0%{
-
-transform:translateY(-100px) rotate(0deg);
-
-opacity:1;
-
+    0%{ transform:translateY(-100px) rotate(0deg); opacity:1; }
+    100%{ transform:translateY(120vh) rotate(720deg); opacity:0; }
 }
 
-100%{
-
-transform:translateY(120vh) rotate(720deg);
-
-opacity:0;
-
-}
-
-}
-
-/* ===========================
-RESPONSIVE
-=========================== */
-
-@media(max-width:900px){
-
-h1{
-
-font-size:60px;
-
-}
-
-h2{
-
-font-size:22px;
-
-}
-
-.carta{
-
-font-size:18px;
-
-padding:25px;
-
-}
-
-.tiempo div{
-
-width:120px;
-
-padding:15px;
-
-}
-
-.tiempo span{
-
-font-size:40px;
-
-}
-
-.galeria img{
-
-width:90%;
-
-height:auto;
-
-}
-
-button{
-
-width:90%;
-
-margin-top:15px;
-
-}
-
-}
 .frase-principal{
-
-margin-top:30px;
-
-font-size:28px;
-
-font-family:'Great Vibes',cursive;
-
-color:white;
-
-text-shadow:0 0 10px hotpink;
-
-animation:latido 3s infinite;
-
+    margin-top:30px;
+    font-size:28px;
+    font-family:'Great Vibes',cursive;
+    color:white;
+    text-shadow:0 0 10px hotpink;
+    animation:latido 3s infinite;
 }
+
 /* ==========================
-   CELULARES
+   PANTALLA INICIO (Opcional / Deshabilitada)
 ========================== */
-
-@media screen and (max-width:768px){
-
-.contenido{
-
-padding:20px 10px;
-
-}
-
-h1{
-
-font-size:48px;
-
-line-height:1.2;
-
-}
-
-h2{
-
-font-size:20px;
-
-}
-
-.frase-principal{
-
-font-size:22px;
-
-padding:0 10px;
-
-}
-
-.contador{
-
-padding:20px;
-
-}
-
-.contador h3{
-
-font-size:28px;
-
-}
-
-.tiempo{
-
-gap:10px;
-
-}
-
-.tiempo div{
-
-width:45%;
-
-padding:15px;
-
-}
-
-.tiempo span{
-
-font-size:35px;
-
-}
-
-.tiempo p{
-
-font-size:16px;
-
-}
-
-.carta{
-
-padding:20px;
-
-font-size:18px;
-
-line-height:1.8;
-
-}
-
-.carta h2{
-
-font-size:42px;
-
-}
-
-.galeria{
-
-flex-direction:column;
-
-align-items:center;
-
-}
-
-.galeria img{
-
-width:95%;
-
-height:auto;
-
-}
-
-button{
-
-width:95%;
-
-font-size:18px;
-
-padding:15px;
-
-margin:10px auto;
-
-display:block;
-
-}
-
-}
 #pantallaInicio{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100vh;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-background:linear-gradient(135deg,#ff5f9e,#ff8fb1,#ffc2d1,#ffe0ea);
-
-z-index:99999;
-
-transition:1s;
-
+    display: none !important; /* Forzamos su desaparición para evitar cruces */
 }
 
-#pantallaInicio h1{
-
-font-size:70px;
-
-margin-bottom:20px;
-
-}
-
-#pantallaInicio p{
-
-font-size:25px;
-
-color:white;
-
-margin-bottom:30px;
-
-text-align:center;
-
-padding:0 20px;
-
-}
-
-#entrar{
-
-padding:20px 50px;
-
-font-size:22px;
-
-border:none;
-
-border-radius:50px;
-
-cursor:pointer;
-
-}
-
-.ocultar{
-
-opacity:0;
-
-visibility:hidden;
-
-pointer-events:none;
-
-}
 /*==========================
 INTRO
 ==========================*/
-
 #intro{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:linear-gradient(180deg,#090c1f,#1d1b38,#3f1f52);
-
-overflow:hidden;
-
-z-index:999999;
-
-transition:1.5s;
-
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(180deg,#090c1f,#1d1b38,#3f1f52);
+    overflow:hidden;
+    z-index:999999;
+    opacity: 1;
+    transition: opacity 1s ease; /* Transición fluida controlada por el JS */
 }
 
 .contenidoIntro{
-
-text-align:center;
-
-padding:20px;
-
-animation:aparecer 2s;
-
+    text-align:center;
+    padding:20px;
+    animation:aparecer 2s;
 }
 
 .contenidoIntro h1{
-
-font-size:80px;
-
-color:white;
-
-margin-bottom:30px;
-
+    font-size:80px;
+    color:white;
+    margin-bottom:30px;
 }
 
 .contenidoIntro p{
-
-font-size:28px;
-
-color:white;
-
-line-height:1.8;
-
-margin-bottom:40px;
-
-}
-
-#entrar{
-
-padding:20px 50px;
-
-font-size:22px;
-
-border:none;
-
-border-radius:50px;
-
-cursor:pointer;
-
-transition:.4s;
-
-}
-
-#entrar:hover{
-
-transform:scale(1.08);
-
-}
-
-.ocultarIntro{
-
-opacity:0;
-
-visibility:hidden;
-
-pointer-events:none;
-
+    font-size:28px;
+    color:white;
+    line-height:1.8;
+    margin-bottom:40px;
 }
 
 @keyframes aparecer{
-
-from{
-
-opacity:0;
-
-transform:translateY(80px);
-
+    from{ opacity:0; transform:translateY(80px); }
+    to{ opacity:1; transform:translateY(0); }
 }
 
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
 #intro::before{
-
-content:"";
-
-position:absolute;
-
-width:2px;
-
-height:2px;
-
-background:white;
-
-box-shadow:
-
-50px 100px white,
-150px 300px white,
-250px 80px white,
-400px 250px white,
-550px 120px white,
-700px 330px white,
-850px 180px white,
-1000px 90px white,
-1200px 270px white,
-1350px 60px white;
-
-animation:parpadeo 3s infinite alternate;
-
+    content:"";
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    box-shadow:
+        50px 100px white,
+        150px 300px white,
+        250px 80px white,
+        400px 250px white,
+        550px 120px white,
+        700px 330px white,
+        850px 180px white,
+        1000px 90px white,
+        1200px 270px white,
+        1350px 60px white;
+    animation:parpadeo 3s infinite alternate;
 }
 
 @keyframes parpadeo{
-
-from{
-
-opacity:.3;
-
-}
-
-to{
-
-opacity:1;
-
-}}
-.luna{
-
-position:absolute;
-
-top:70px;
-
-right:100px;
-
-width:140px;
-
-height:140px;
-
-border-radius:50%;
-
-background:white;
-
-box-shadow:
-
-0 0 30px white,
-
-0 0 80px white;
-
-opacity:.9;
-
-}
-@media(max-width:768px){
-
-.contenidoIntro h1{
-
-font-size:45px;
-
-}
-
-.contenidoIntro p{
-
-font-size:20px;
-
-padding:0 15px;
-
-}
-
-#entrar{
-
-width:90%;
-
-font-size:18px;
-
-padding:16px;
-
+    from{ opacity:.3; }
+    to{ opacity:1; }
 }
 
 .luna{
-
-width:80px;
-
-height:80px;
-
-top:30px;
-
-right:30px;
-
+    position:absolute;
+    top:70px;
+    right:100px;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:white;
+    box-shadow: 0 0 30px white, 0 0 80px white;
+    opacity:.9;
 }
 
-}
 /*==========================
 SLIDER
 ==========================*/
-
 .slider{
-
-margin-top:60px;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:20px;
-
+    margin-top:60px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
 }
 
 .slider img{
-
-width:350px;
-
-height:500px;
-
-object-fit:cover;
-
-border-radius:30px;
-
-border:5px solid white;
-
-box-shadow:0 0 30px rgba(0,0,0,.3);
-
-transition:.8s;
-
+    width:350px;
+    height:500px;
+    object-fit:cover;
+    border-radius:30px;
+    border:5px solid white;
+    box-shadow:0 0 30px rgba(0,0,0,.3);
+    transition:.8s;
 }
 
 .slider img:hover{
-
-transform:scale(1.03);
-
+    transform:scale(1.03);
 }
 
 .slider button{
-
-width:60px;
-
-height:60px;
-
-border-radius:50%;
-
-font-size:25px;
-
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    font-size:25px;
 }
 
 .indicadores{
-
-margin-top:20px;
-
-display:flex;
-
-justify-content:center;
-
-gap:10px;
-
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
 }
 
 .indicadores span{
-
-width:14px;
-
-height:14px;
-
-border-radius:50%;
-
-background:white;
-
-opacity:.4;
-
-transition:.4s;
-
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:white;
+    opacity:.4;
+    transition:.4s;
 }
 
 .indicadores .activo{
-
-opacity:1;
-
-transform:scale(1.5);
-
-}
-@media(max-width:768px){
-
-.slider{
-
-flex-direction:column;
-
+    opacity:1;
+    transform:scale(1.5);
 }
 
-.slider img{
-
-width:95%;
-
-height:auto;
-
-}
-
-.slider button{
-
-width:55px;
-
-height:55px;
-
-font-size:22px;
-
-}
-
-}
+/* ==========================
+   RAZONES
+========================== */
 .razones{
-
-margin-top:70px;
-
-background:rgba(255,255,255,.9);
-
-padding:40px;
-
-border-radius:30px;
-
-box-shadow:0 0 30px rgba(0,0,0,.15);
-
+    margin-top:70px;
+    background:rgba(255,255,255,.9);
+    padding:40px;
+    border-radius:30px;
+    box-shadow:0 0 30px rgba(0,0,0,.15);
 }
 
 #razon{
-
-font-size:25px;
-
-margin:40px 0;
-
-color:#ff006e;
-
-font-weight:bold;
-
-line-height:1.7;
-
-min-height:90px;
-
-transition:.5s;
-
+    font-size:25px;
+    margin:40px 0;
+    color:#ff006e;
+    font-weight:bold;
+    line-height:1.7;
+    min-height:90px;
+    transition:.5s;
 }
+
 /*==========================
 TIMELINE
 ==========================*/
-
 .timeline{
-
-margin-top:80px;
-
-padding:40px;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(20px);
-
-border-radius:30px;
-
+    margin-top:80px;
+    padding:40px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    border-radius:30px;
 }
 
 .timeline h2{
-
-margin-bottom:50px;
-
+    margin-bottom:50px;
 }
 
 .evento{
-
-position:relative;
-
-margin:40px auto;
-
-padding-left:40px;
-
-border-left:4px solid white;
-
-max-width:700px;
-
-text-align:left;
-
+    position:relative;
+    margin:40px auto;
+    padding-left:40px;
+    border-left:4px solid white;
+    max-width:700px;
+    text-align:left;
 }
 
 .evento::before{
-
-content:"❤️";
-
-position:absolute;
-
-left:-18px;
-
-top:0;
-
-font-size:25px;
-
+    content:"❤️";
+    position:absolute;
+    left:-18px;
+    top:0;
+    font-size:25px;
 }
 
 .fecha{
-
-font-size:24px;
-
-font-weight:bold;
-
-color:white;
-
-margin-bottom:10px;
-
+    font-size:24px;
+    font-weight:bold;
+    color:white;
+    margin-bottom:10px;
 }
 
 .descripcion{
-
-font-size:18px;
-
-color:white;
-
-line-height:1.8;
-
-}
-@media(max-width:768px){
-
-.timeline{
-
-padding:20px;
-
+    font-size:18px;
+    color:white;
+    line-height:1.8;
 }
 
-.fecha{
-
-font-size:20px;
-
-}
-
-.descripcion{
-
-font-size:16px;
-
-}
-
-.evento{
-
-padding-left:25px;
-
-}
-
-}
 /*==========================
 REGALO
 ==========================*/
-
 .regalo{
-
-margin-top:80px;
-
-padding:40px;
-
-text-align:center;
-
+    margin-top:80px;
+    padding:40px;
+    text-align:center;
 }
 
 #caja{
-
-font-size:120px;
-
-cursor:pointer;
-
-transition:.5s;
-
-animation:latido 2s infinite;
-
+    font-size:120px;
+    cursor:pointer;
+    transition:.5s;
+    animation:latido 2s infinite;
 }
 
 #caja:hover{
-
-transform:scale(1.2) rotate(8deg);
-
+    transform:scale(1.2) rotate(8deg);
 }
 
 #mensajeOculto{
-
-margin-top:30px;
-
-background:white;
-
-padding:30px;
-
-border-radius:25px;
-
-display:none;
-
-color:#6d214f;
-
-font-size:22px;
-
-line-height:1.8;
-
-box-shadow:0 0 30px rgba(0,0,0,.2);
-
-animation:aparecerRegalo .8s;
-
+    margin-top:30px;
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    display:none;
+    color:#6d214f;
+    font-size:22px;
+    line-height:1.8;
+    box-shadow:0 0 30px rgba(0,0,0,.2);
+    animation:aparecerRegalo .8s;
 }
 
 @keyframes aparecerRegalo{
-
-from{
-
-opacity:0;
-
-transform:translateY(30px);
-
+    from{ opacity:0; transform:translateY(30px); }
+    to{ opacity:1; transform:translateY(0); }
 }
 
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
 /*==========================
 PRÓXIMO ANIVERSARIO
 ==========================*/
-
 .aniversario{
-
-margin-top:80px;
-
-padding:40px;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(20px);
-
-border-radius:30px;
-
-text-align:center;
-
+    margin-top:80px;
+    padding:40px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    border-radius:30px;
+    text-align:center;
 }
 
 .contadorAniversario{
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-margin-top:30px;
-
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:30px;
 }
 
 .contadorAniversario div{
-
-background:white;
-
-padding:20px;
-
-border-radius:20px;
-
-width:140px;
-
-box-shadow:0 0 20px rgba(255,20,147,.3);
-
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    width:140px;
+    box-shadow:0 0 20px rgba(255,20,147,.3);
 }
 
 .contadorAniversario span{
-
-font-size:45px;
-
-font-weight:bold;
-
-color:#ff006e;
-
+    font-size:45px;
+    font-weight:bold;
+    color:#ff006e;
 }
 
 .mensajeAniversario{
-
-margin-top:30px;
-
-font-size:22px;
-
-color:white;
-
-line-height:1.8;
-
-}
-@media(max-width:768px){
-
-.contadorAniversario div{
-
-width:45%;
-
+    margin-top:30px;
+    font-size:22px;
+    color:white;
+    line-height:1.8;
 }
 
-.mensajeAniversario{
-
-font-size:18px;
-
-}
-
-}
 /*==========================
 FINAL
 ==========================*/
-
 .finalHistoria{
-
-margin-top:100px;
-
-text-align:center;
-
-padding:50px;
-
+    margin-top:100px;
+    text-align:center;
+    padding:50px;
 }
 
 .finalHistoria p{
-
-font-size:24px;
-
-color:white;
-
-margin:20px 0;
-
-}
-
-#amorInfinito{
-
-font-size:24px;
-
-padding:20px 50px;
-
+    font-size:24px;
+    color:white;
+    margin:20px 0;
 }
 
 #pantallaFinal{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100vh;
-
-background:rgba(0,0,0,.93);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-opacity:0;
-
-visibility:hidden;
-
-transition:1.5s;
-
-z-index:999999;
-
-padding:20px;
-
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(0,0,0,.93);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    visibility:hidden;
+    transition:1.5s;
+    z-index:999999;
+    padding:20px;
 }
 
 #pantallaFinal.mostrar{
-
-opacity:1;
-
-visibility:visible;
-
+    opacity:1;
+    visibility:visible;
 }
 
 .mensajeFinal{
-
-text-align:center;
-
-color:white;
-
-animation:aparecerFinal 2s;
-
+    text-align:center;
+    color:white;
+    animation:aparecerFinal 2s;
 }
 
 .mensajeFinal h1{
-
-font-size:100px;
-
+    font-size:100px;
 }
 
 .mensajeFinal h2{
-
-font-size:40px;
-
-line-height:1.7;
-
-margin:30px 0;
-
+    font-size:40px;
+    line-height:1.7;
+    margin:30px 0;
 }
 
 .mensajeFinal p{
-
-font-size:24px;
-
-line-height:1.8;
-
+    font-size:24px;
+    line-height:1.8;
 }
 
 @keyframes aparecerFinal{
-
-from{
-
-opacity:0;
-
-transform:scale(.8);
-
+    from{ opacity:0; transform:scale(.8); }
+    to{ opacity:1; transform:scale(1); }
 }
 
-to{
-
-opacity:1;
-
-transform:scale(1);
-
+/* ==================================
+   RESPONSIVE & MEDIA QUERIES (Móviles)
+================================== */
+@media(max-width:900px){
+    h1{ font-size:60px; }
+    h2{ font-size:22px; }
+    .carta{ font-size:18px; padding:25px; }
+    .tiempo div{ width:120px; padding:15px; }
+    .tiempo span{ font-size:40px; }
 }
 
-}
-@media(max-width:768px){
-
-.mensajeFinal h1{
-
-font-size:70px;
-
-}
-
-.mensajeFinal h2{
-
-font-size:24px;
-
-}
-
-.mensajeFinal p{
-
-font-size:18px;
-
-}
-
-#amorInfinito{
-
-width:95%;
-
-font-size:18px;
-
-}
-
+@media screen and (max-width:768px){
+    .contenido{ padding:20px 10px; }
+    h1{ font-size:48px; line-height:1.2; }
+    h2{ font-size:20px; }
+    .frase-principal{ font-size:22px; padding:0 10px; }
+    .contador{ padding:20px; }
+    .contador h3{ font-size:28px; }
+    .tiempo{ gap:10px; }
+    .tiempo div{ width:45%; padding:15px; }
+    .tiempo span{ font-size:35px; }
+    .tiempo p{ font-size:16px; }
+    .carta{ padding:20px; font-size:18px; line-height:1.8; }
+    .carta h2{ font-size:42px; }
+    .galeria{ flex-direction:column; align-items:center; }
+    .galeria img{ width:95%; height:auto; }
+    button{ width:95%; font-size:18px; padding:15px; margin:10px auto; display:block; }
+    
+    .contenidoIntro h1{ font-size:45px; }
+    .contenidoIntro p{ font-size:20px; padding:0 15px; }
+    .luna{ width:80px; height:80px; top:30px; right:30px; }
+    .slider{ flex-direction:column; }
+    .slider img{ width:95%; height:auto; }
+    .slider button{ width:55px; height:55px; font-size:22px; }
+    .timeline{ padding:20px; }
+    .fecha{ font-size:20px; }
+    .descripcion{ font-size:16px; }
+    .evento{ padding-left:25px; }
+    .contadorAniversario div{ width:45%; }
+    .mensajeAniversario{ font-size:18px; }
+    .mensajeFinal h1{ font-size:70px; }
+    .mensajeFinal h2{ font-size:24px; }
+    .mensajeFinal p{ font-size:18px; }
 }

@@ -1,483 +1,299 @@
 // ==============================
-// CONTADOR ❤️
+// INICIALIZACIÓN SEGURA
 // ==============================
 
-const fechaInicio = new Date(2026, 1, 5, 0, 0, 0);
+document.addEventListener("DOMContentLoaded", function () {
 
-function actualizarContador() {
+    // ==============================
+    // TRANSICIÓN DIRECTA (FADE EFFECT)
+    // ==============================
+    const btnIntro = document.getElementById("btnIntro");
+    const intro = document.getElementById("intro");
+    const contenido = document.querySelector(".contenido");
 
-    const ahora = new Date();
+    if (btnIntro) {
+        btnIntro.addEventListener("click", function () {
+            if (intro && contenido) {
+                // 1. Desvanecemos la pantalla de la luna (Fade-out)
+                intro.style.transition = "opacity 1s ease";
+                intro.style.opacity = "0";
 
-    let diferencia = ahora.getTime() - fechaInicio.getTime();
+                // 2. Esperamos 1 segundo a que termine la animación
+                setTimeout(() => {
+                    intro.style.display = "none"; // Ocultamos por completo la intro
 
-    if (diferencia < 0) {
-        diferencia = 0;
+                    // 3. Activamos el contenedor principal
+                    contenido.style.display = "block";
+                    contenido.style.opacity = "0";
+                    contenido.style.transition = "opacity 1s ease";
+
+                    // Pequeño delay imperceptible para que el navegador aplique el Fade-in
+                    setTimeout(() => {
+                        contenido.style.opacity = "1";
+                    }, 50);
+
+                    // Intentar reproducir música automáticamente al entrar
+                    const audio = document.getElementById("audio");
+                    if (audio) {
+                        audio.play().catch(() => console.log("La reproducción automática requirió interacción"));
+                        const btnMusica = document.getElementById("btnMusica");
+                        if (btnMusica) btnMusica.textContent = "⏸️ Pausar Música";
+                    }
+
+                }, 1000);
+            }
+        });
     }
 
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+    // ==============================
+    // CONTADOR ❤️
+    // ==============================
+    const fechaInicio = new Date(2026, 1, 5, 0, 0, 0); // 5 de Febrero de 2026
 
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = horas;
-    document.getElementById("minutos").textContent = minutos;
-    document.getElementById("segundos").textContent = segundos;
+    function actualizarContador() {
+        const ahora = new Date();
+        let diferencia = ahora - fechaInicio;
 
-}
+        if (diferencia < 0) diferencia = 0;
 
-actualizarContador();
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-setInterval(actualizarContador, 1000);
+        const d = document.getElementById("dias");
+        const h = document.getElementById("horas");
+        const m = document.getElementById("minutos");
+        const s = document.getElementById("segundos");
 
-// ==============================
-// CARTA ❤️
-// ==============================
-
-const mensaje = "Dicen que las personas son pasajeras.\n\nPero desde que tú llegaste mi vida cambio por completo.\n\nCada día contigo es una aventura y un recuerdo hermoso.\n\nGracias por existir y por hacerme tan feliz.\n\nDesde el 5 de febrero de 2026 mi corazón encontró su lugar favorito.\n\n🖤 Te amo infinitamente 🖤";
-
-const texto = document.getElementById("texto");
-
-let indice = 0;
-
-function escribir() {
-
-    if (!texto) return;
-
-    if (indice < mensaje.length) {
-
-        texto.innerHTML += mensaje.charAt(indice);
-
-        indice++;
-
-        setTimeout(escribir, 40);
-
+        if (d) d.textContent = dias;
+        if (h) h.textContent = horas;
+        if (m) m.textContent = minutos;
+        if (s) s.textContent = segundos;
     }
 
-}
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
 
-escribir();
+    // ==============================
+    // CARTA ✉️
+    // ==============================
+    const mensaje = `Dicen que las personas son pasajeras.
 
-// ==============================
-// PÉTALOS 🌹
-// ==============================
+Pero desde que tú llegaste mi vida cambió por completo.
 
-function crearPetalo() {
+Cada día contigo es una aventura y un recuerdo hermoso.
 
-    const petalo = document.createElement("div");
+Gracias por existir.
 
-    petalo.className = "petalo";
+Desde el 5 de febrero de 2026 mi corazón encontró su lugar favorito.
 
-    petalo.innerHTML = "🌹";
+Te amo infinitamente 🖤`;
 
-    petalo.style.left = Math.random() * 100 + "vw";
+    const texto = document.getElementById("texto");
+    let indice = 0;
 
-    petalo.style.fontSize = (20 + Math.random() * 20) + "px";
+    function escribir() {
+        if (!texto) return;
 
-    petalo.style.animationDuration = (5 + Math.random() * 5) + "s";
-
-    document.body.appendChild(petalo);
-
-    setTimeout(function () {
-
-        petalo.remove();
-
-    }, 10000);
-
-}
-
-setInterval(crearPetalo, 500);
-
-// ==============================
-// CORAZONES ❤️
-// ==============================
-
-function crearCorazon() {
-
-    const corazon = document.createElement("div");
-
-    corazon.className = "petalo";
-
-    corazon.innerHTML = "❤️";
-
-    corazon.style.left = Math.random() * 100 + "vw";
-
-    corazon.style.fontSize = (15 + Math.random() * 25) + "px";
-
-    corazon.style.animationDuration = (4 + Math.random() * 4) + "s";
-
-    document.body.appendChild(corazon);
-
-    setTimeout(function () {
-
-        corazon.remove();
-
-    }, 8000);
-
-}
-
-setInterval(crearCorazon, 300);
-
-// ==============================
-// CURSOR ✨
-// ==============================
-
-document.addEventListener("mousemove", function (e) {
-
-    const brillo = document.createElement("div");
-
-    brillo.innerHTML = "🖤";
-
-    brillo.style.position = "fixed";
-    brillo.style.left = e.clientX + "px";
-    brillo.style.top = e.clientY + "px";
-    brillo.style.pointerEvents = "none";
-    brillo.style.fontSize = "10px";
-    brillo.style.zIndex = "9999";
-
-    document.body.appendChild(brillo);
-
-    setTimeout(function () {
-
-        brillo.remove();
-
-    }, 800);
-
-});
-
-// ==============================
-// BOTÓN LLUVIA 💖
-// ==============================
-
-const lluvia = document.getElementById("lluvia");
-
-if (lluvia) {
-
-    lluvia.addEventListener("click", function () {
-
-        for (let i = 0; i < 150; i++) {
-
-            setTimeout(function () {
-
-                const c = document.createElement("div");
-
-                c.className = "petalo";
-
-                c.innerHTML = "💖";
-
-                c.style.left = Math.random() * 100 + "vw";
-
-                c.style.fontSize = (20 + Math.random() * 20) + "px";
-
-                c.style.animationDuration = (3 + Math.random() * 3) + "s";
-
-                document.body.appendChild(c);
-
-                setTimeout(function () {
-
-                    c.remove();
-
-                }, 7000);
-
-            }, i * 20);
-
+        if (indice < mensaje.length) {
+            texto.innerHTML += mensaje.charAt(indice);
+            indice++;
+            setTimeout(escribir, 35);
         }
+    }
 
+    escribir();
+
+    // ==============================
+    // PETALOS 🌹 + CORAZONES ❤️
+    // ==============================
+    function crearElemento(emoji, duracionMin, duracionMax, sizeMin, sizeMax) {
+        const el = document.createElement("div");
+        el.className = "petalo";
+        el.innerHTML = emoji;
+
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.fontSize = (sizeMin + Math.random() * sizeMax) + "px";
+        el.style.animationDuration = (duracionMin + Math.random() * duracionMax) + "s";
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 9000);
+    }
+
+    setInterval(() => crearElemento("🌹", 5, 5, 20, 20), 500);
+    setInterval(() => crearElemento("❤️", 4, 4, 15, 25), 300);
+
+    // ==============================
+    // CURSOR ✨
+    // ==============================
+    document.addEventListener("mousemove", function (e) {
+        const brillo = document.createElement("div");
+        brillo.innerHTML = "✨";
+        brillo.style.position = "fixed";
+        brillo.style.left = e.clientX + "px";
+        brillo.style.top = e.clientY + "px";
+        brillo.style.pointerEvents = "none";
+        brillo.style.fontSize = "10px";
+        brillo.style.zIndex = "9999";
+
+        document.body.appendChild(brillo);
+        setTimeout(() => brillo.remove(), 700);
     });
 
-}
+    // ==============================
+    // LLUVIA DE AMOR 💖
+    // ==============================
+    const btnLluvia = document.getElementById("btnLluvia");
 
-// ==============================
-// MÚSICA 🎵
-// ==============================
+    if (btnLluvia) {
+        btnLluvia.addEventListener("click", function () {
+            for (let i = 0; i < 120; i++) {
+                setTimeout(() => {
+                    const c = document.createElement("div");
+                    c.className = "petalo";
+                    c.innerHTML = "💖";
 
-const audio = document.getElementById("audio");
-const musica = document.getElementById("musica");
+                    c.style.left = Math.random() * 100 + "vw";
+                    c.style.fontSize = (15 + Math.random() * 25) + "px";
+                    c.style.animationDuration = (3 + Math.random() * 3) + "s";
 
-function iniciarMusica() {
-
-    audio.play().catch(() => {});
-
-    document.removeEventListener("touchstart", iniciarMusica);
-    document.removeEventListener("click", iniciarMusica);
-
-}
-
-document.addEventListener("touchstart", iniciarMusica, { once: true });
-document.addEventListener("click", iniciarMusica, { once: true });
-
-musica.addEventListener("click", function () {
-
-    if (audio.paused) {
-
-        audio.play();
-
-        musica.textContent = "⏸️ Pausar Música";
-
-    } else {
-
-        audio.pause();
-
-        musica.textContent = "🎵 Música";
-
+                    document.body.appendChild(c);
+                    setTimeout(() => c.remove(), 7000);
+                }, i * 15);
+            }
+        });
     }
 
-});
+    // ==============================
+    // MÚSICA 🎵
+    // ==============================
+    const audio = document.getElementById("audio");
+    const btnMusica = document.getElementById("btnMusica");
 
-// ==============================
-// FRASES ❤️
-// ==============================
-
-const frases = [
-
-    "❤️ Eres mi lugar favorito",
-    "🌹 Gracias por existir",
-    "💖 Siempre te elegiría",
-    "✨ Contigo todo es mejor",
-    "🥹 Mi felicidad tiene tu nombre"
-
-];
-
-setInterval(function () {
-
-    document.title = frases[Math.floor(Math.random() * frases.length)];
-
-}, 5000);
-
-const intro = document.getElementById("intro");
-const botonEntrar = document.getElementById("entrar");
-
-botonEntrar.addEventListener("click", function(){
-
-    const audio=document.getElementById("audio");
-
-    if(audio){
-
-        audio.play().catch(()=>{});
-
+    function intentarReproducir() {
+        if (audio) {
+            audio.play().catch(() => {});
+        }
     }
 
-    intro.style.opacity="0";
-
-    setTimeout(function(){
-
-        intro.style.display="none";
-
-    },1000);
-
-});
-const fotos = [
-
-"img/azul.jpeg",
-
-"img/verde.jpeg",
-
-"img/juntos.jpeg"
-
-];
-
-let actual = 0;
-
-const imagen = document.getElementById("foto");
-
-const anterior = document.querySelector(".anterior");
-
-const siguiente = document.querySelector(".siguiente");
-
-const puntos = document.querySelectorAll(".indicadores span");
-
-function actualizarSlider(){
-
-imagen.style.opacity=0;
-
-setTimeout(()=>{
-
-imagen.src=fotos[actual];
-
-imagen.style.opacity=1;
-
-},300);
-
-puntos.forEach(p=>p.classList.remove("activo"));
-
-puntos[actual].classList.add("activo");
-
-}
-
-siguiente.addEventListener("click",()=>{
-
-actual++;
-
-if(actual>=fotos.length){
-
-actual=0;
-
-}
-
-actualizarSlider();
-
-});
-
-anterior.addEventListener("click",()=>{
-
-actual--;
-
-if(actual<0){
-
-actual=fotos.length-1;
-
-}
-
-actualizarSlider();
-
-});
-
-setInterval(()=>{
-
-actual++;
-
-if(actual>=fotos.length){
-
-actual=0;
-
-}
-
-actualizarSlider();
-
-},5000);
-const listaRazones=[
-
-"Porque contigo soy feliz.",
-
-"Porque tu sonrisa alegra mis días.",
-
-"Porque siempre me apoyas.",
-
-"Porque haces que todo sea mejor.",
-
-"Porque contigo me siento en casa.",
-
-"Porque amo escucharte.",
-
-"Porque eres mi tranquilidad.",
-
-"Porque me haces reír.",
-
-"Porque nunca me canso de ti.",
-
-"Porque volvería a elegirte una y mil veces."
-
-];
-
-const razon=document.getElementById("razon");
-
-const botonRazon=document.getElementById("otraRazon");
-
-botonRazon.addEventListener("click",()=>{
-
-const numero=Math.floor(Math.random()*listaRazones.length);
-
-razon.style.opacity=0;
-
-setTimeout(()=>{
-
-razon.textContent=listaRazones[numero];
-
-razon.style.opacity=1;
-
-},300);
-
-});
-const caja=document.getElementById("caja");
-
-const mensajeOculto=document.getElementById("mensajeOculto");
-
-caja.addEventListener("click",()=>{
-
-caja.innerHTML="💖";
-
-caja.style.transform="scale(1.3)";
-
-mensajeOculto.style.display="block";
-
-});
-function actualizarAniversario(){
-
-const ahora=new Date();
-
-const proximo = new Date(
-    ahora.getFullYear(),
-    1,
-    5,
-    0,
-    0,
-    0
-);
-
-proximo.setMonth(1); // febrero
-proximo.setDate(5);
-proximo.setHours(0,0,0,0);
-
-if(ahora>proximo){
-
-proximo.setFullYear(proximo.getFullYear()+1);
-
-}
-
-const diferencia=proximo-ahora;
-
-const dias=Math.floor(diferencia/(1000*60*60*24));
-
-const horas=Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
-
-const minutos=Math.floor((diferencia%(1000*60*60))/(1000*60));
-
-const segundos=Math.floor((diferencia%(1000*60))/1000);
-
-document.getElementById("diasAniversario").textContent=dias;
-document.getElementById("horasAniversario").textContent=horas;
-document.getElementById("minutosAniversario").textContent=minutos;
-document.getElementById("segundosAniversario").textContent=segundos;
-
-}
-
-actualizarAniversario();
-
-setInterval(actualizarAniversario,1000);
-const botonFinal=document.getElementById("amorInfinito");
-
-const pantallaFinal=document.getElementById("pantallaFinal");
-
-botonFinal.addEventListener("click",()=>{
-
-for(let i=0;i<500;i++){
-
-setTimeout(()=>{
-
-const corazon=document.createElement("div");
-
-corazon.className="petalo";
-
-corazon.innerHTML=Math.random()>0.5?"❤️":"🌹";
-
-corazon.style.left=Math.random()*100+"vw";
-
-corazon.style.fontSize=(20+Math.random()*30)+"px";
-
-corazon.style.animationDuration=(3+Math.random()*4)+"s";
-
-document.body.appendChild(corazon);
-
-setTimeout(()=>{
-
-corazon.remove();
-
-},7000);
-
-},i*8);
-
-}
-
-pantallaFinal.classList.add("mostrar");
-
+    document.addEventListener("click", intentarReproducir, { once: true });
+
+    if (btnMusica && audio) {
+        btnMusica.addEventListener("click", function () {
+            if (audio.paused) {
+                audio.play();
+                btnMusica.textContent = "⏸️ Pausar Música";
+            } else {
+                audio.pause();
+                btnMusica.textContent = "🎵 Música";
+            }
+        });
+    }
+
+    // ==============================
+    // FRASES TITLE
+    // ==============================
+    const frases = [
+        "❤️ Eres mi lugar favorito",
+        "🌹 Gracias por existir",
+        "💖 Siempre te elegiría",
+        "✨ Contigo todo es mejor",
+        "🥹 Mi felicidad tiene tu nombre"
+    ];
+
+    setInterval(() => {
+        document.title = frases[Math.floor(Math.random() * frases.length)];
+    }, 5000);
+
+    // ==============================
+    // SLIDER 📸
+    // ==============================
+    const fotos = [
+        "img/azul.jpeg",
+        "img/verde.jpeg",
+        "img/juntos.jpeg"
+    ];
+
+    let actual = 0;
+    const imagen = document.getElementById("foto");
+    const anterior = document.querySelector(".anterior");
+    const siguiente = document.querySelector(".siguiente");
+    const puntos = document.querySelectorAll(".indicadores span");
+
+    function actualizarSlider() {
+        if (!imagen) return;
+
+        imagen.style.opacity = 0;
+
+        setTimeout(() => {
+            imagen.src = fotos[actual];
+            imagen.style.opacity = 1;
+        }, 250);
+
+        puntos.forEach(p => p.classList.remove("activo"));
+
+        if (puntos[actual]) {
+            puntos[actual].classList.add("activo");
+        }
+    }
+
+    if (siguiente) {
+        siguiente.addEventListener("click", () => {
+            actual = (actual + 1) % fotos.length;
+            actualizarSlider();
+        });
+    }
+
+    if (anterior) {
+        anterior.addEventListener("click", () => {
+            actual = (actual - 1 + fotos.length) % fotos.length;
+            actualizarSlider();
+        });
+    }
+
+    setInterval(() => {
+        actual = (actual + 1) % fotos.length;
+        actualizarSlider();
+    }, 5000);
+
+    // ==============================
+    // RAZONES ❤️
+    // ==============================
+    const listaRazones = [
+        "Porque contigo soy feliz.",
+        "Porque tu sonrisa alegra mis días.",
+        "Porque siempre me apoyas.",
+        "Porque haces que todo sea mejor.",
+        "Porque contigo me siento en casa.",
+        "Porque eres mi tranquilidad."
+    ];
+
+    const razon = document.getElementById("razon");
+    const btnRazon = document.getElementById("btnRazon");
+
+    if (btnRazon && razon) {
+        btnRazon.addEventListener("click", () => {
+            const r = listaRazones[Math.floor(Math.random() * listaRazones.length)];
+            razon.style.opacity = 0;
+
+            setTimeout(() => {
+                razon.textContent = r;
+                razon.style.opacity = 1;
+            }, 300);
+        });
+    }
+
+    // ==============================
+    // REGALO 🎁
+    // ==============================
+    const caja = document.getElementById("caja");
+    const mensajeOculto = document.getElementById("mensajeOculto");
+
+    if (caja && mensajeOculto) {
+        caja.addEventListener("click", () => {
+            caja.innerHTML = "💖";
+            mensajeOculto.style.display = "block";
+        });
+    }
 });
