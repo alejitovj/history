@@ -2,364 +2,200 @@
 <html lang="es">
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8">
+    <title>Nuestra Historia ❤️</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
 
-<title>Nuestra Historia ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="amm.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+    <!-- ================= INTRO ================= -->
     <div id="intro">
         <div class="luna"></div>
 
-    <div class="contenidoIntro">
+        <div class="contenidoIntro">
+            <h1>❤️ Alejo & Dannita ❤️</h1>
+
+            <p>
+                Hay historias que duran un momento...
+                <br><br>
+                Y otras que duran para siempre.
+            </p>
+
+            <button id="btnIntro">💖 Entrar a nuestra historia 💖</button>
+        </div>
+    </div>
+
+    <!-- ================= PANTALLA INICIO ================= -->
+    <div id="pantallaInicio">
+        <h1>❤️ Alejo & Dannita ❤️</h1>
+        <p>Toca para entrar a nuestra historia 💖</p>
+        <button id="btnInicio">🎵 Entrar</button>
+    </div>
+
+    <!-- ================= EFECTOS ================= -->
+    <div id="estrellas"></div>
+    <div id="petalos"></div>
+
+    <!-- ================= CONTENIDO PRINCIPAL ================= -->
+    <main class="contenido">
 
         <h1>❤️ Alejo & Dannita ❤️</h1>
 
-        <p>
-            Hay historias que duran un momento...
-            <br><br>
-            Y otras que duran para siempre.
-        </p>
+        <h2>Desde el 5 de febrero de 2026...</h2>
 
-        <button id="entrar">
-            💖 Entrar a nuestra historia 💖
-        </button>
+        <div class="frase-principal">
+            "No sé cuánto dure mi vida, pero sí sé que quiero pasar cada segundo a tu lado. ❤️"
+        </div>
 
+        <!-- CONTADOR -->
+        <section class="contador">
+            <h3>Llevamos juntos</h3>
+
+            <div class="tiempo">
+                <div><span id="dias">0</span><p>Días</p></div>
+                <div><span id="horas">0</span><p>Horas</p></div>
+                <div><span id="minutos">0</span><p>Minutos</p></div>
+                <div><span id="segundos">0</span><p>Segundos</p></div>
+            </div>
+        </section>
+
+        <!-- CARTA -->
+        <section class="carta">
+            <h2>💌 Mi carta para ti</h2>
+            <p id="texto"></p>
+        </section>
+
+        <!-- RAZONES -->
+        <section class="razones">
+            <h2>❤️ 100 razones por las que te amo ❤️</h2>
+
+            <div id="razon">Porque llegaste a mi vida cuando más te necesitaba.</div>
+
+            <button id="btnRazon">💖 Mostrar otra razón 💖</button>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="timeline">
+            <h2>📖 Nuestra historia ❤️</h2>
+
+            <div class="evento">
+                <div class="fecha">❤️ 05/02/2026</div>
+                <div class="descripcion">El día en que comenzó la historia más bonita de mi vida.</div>
+            </div>
+
+            <div class="evento">
+                <div class="fecha">🌹 Nuestro primer detalle</div>
+                <div class="descripcion">Un pequeño gesto que se convirtió en un gran recuerdo.</div>
+            </div>
+
+            <div class="evento">
+                <div class="fecha">🥹 Nuestro primer paseo</div>
+                <div class="descripcion">Caminar contigo hizo que cualquier lugar se sintiera especial.</div>
+            </div>
+
+            <div class="evento">
+                <div class="fecha">💖 Hoy</div>
+                <div class="descripcion">Seguimos escribiendo esta historia, un día a la vez.</div>
+            </div>
+        </section>
+
+        <!-- REGALO -->
+        <section class="regalo">
+            <h2>🎁 Tengo una sorpresa para ti ❤️</h2>
+
+            <div id="caja">🎁</div>
+
+            <div id="mensajeOculto">
+                <h3>💌 Para ti</h3>
+                <p>
+                    Gracias por llegar a mi vida.
+                    <br><br>
+                    Eres una de las mejores cosas que me han pasado.
+                    <br><br>
+                    Si pudiera volver a empezar, volvería a buscarte una y otra vez.
+                    <br><br>
+                    ❤️ Te amo infinitamente ❤️
+                </p>
+            </div>
+        </section>
+
+        <!-- ANIVERSARIO -->
+        <section class="aniversario">
+            <h2>📅 Nuestro próximo aniversario ❤️</h2>
+
+            <div class="contadorAniversario">
+                <div><span id="diasA">0</span><p>Días</p></div>
+                <div><span id="horasA">0</span><p>Horas</p></div>
+                <div><span id="minutosA">0</span><p>Minutos</p></div>
+                <div><span id="segundosA">0</span><p>Segundos</p></div>
+            </div>
+
+            <p class="mensajeAniversario">
+                💖 Cada segundo que pasa nos acerca a escribir un nuevo capítulo juntos.
+            </p>
+        </section>
+
+        <!-- SLIDER -->
+        <section class="slider">
+            <button class="anterior">❮</button>
+
+            <img id="foto" src="img/azul.jpeg" alt="foto amor">
+
+            <button class="siguiente">❯</button>
+        </section>
+
+        <div class="indicadores">
+            <span class="activo"></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- BOTONES -->
+        <button id="btnLluvia">💖 Lluvia de Amor 💖</button>
+        <button id="btnMusica">🎵 Música</button>
+
+        <audio id="audio" loop>
+            <source src="audio/standbyme.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- FINAL -->
+        <section class="finalHistoria">
+            <h2>❤️ Antes de irte... ❤️</h2>
+            <p>Quiero hacerte una última pregunta.</p>
+
+            <button id="btnFinal">💖 ¿Sabes cuánto te amo? 💖</button>
+        </section>
+
+    </main>
+
+    <!-- PANTALLA FINAL -->
+    <div id="pantallaFinal">
+        <div class="mensajeFinal">
+            <h1>❤️</h1>
+            <h2>
+                No existe un reloj,<br>
+                ni un contador,<br>
+                capaz de medir<br>
+                todo lo que siento por ti.
+            </h2>
+
+            <p>
+                Gracias por formar parte de mi vida.<br><br>
+                Te elegiría una y otra vez.<br><br>
+                ❤️ Alejo & Dannita ❤️
+            </p>
+        </div>
     </div>
 
-</div>
-
-<div id="estrellas"></div>
-
-<div id="petalos"></div>
-
-<div class="contenido">
-
-<h1>❤️ Alejo & Dannita ❤️</h1>
-
-<h2>Desde el 5 de febrero de 2026...</h2>
-
-<div class="frase-principal">
-    "No sé cuánto dure mi vida, pero sí sé que quiero pasar cada segundo a tu lado. ❤️"
-</div>
-
-<div class="contador">
-
-<h3>Llevamos juntos</h3>
-
-<div class="tiempo">
-
-<div>
-
-<span id="dias">0</span>
-
-<p>Días</p>
-
-</div>
-
-<div>
-
-<span id="horas">0</span>
-
-<p>Horas</p>
-
-</div>
-
-<div>
-
-<span id="minutos">0</span>
-
-<p>Minutos</p>
-
-</div>
-
-<div>
-
-<span id="segundos">0</span>
-
-<p>Segundos</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="carta">
-
-<h2>💌 Mi carta para ti</h2>
-
-<p id="texto"></p>
-
-</div>
-
-<section class="razones">
-
-    <h2>❤️ 100 razones por las que te amo ❤️</h2>
-
-    <div id="razon">
-
-        Porque llegaste a mi vida cuando más te necesitaba.
-
-    </div>
-
-    <button id="otraRazon">
-
-        💖 Mostrar otra razón 💖
-
-    </button>
-
-</section>
-
-<section class="timeline">
-
-    <h2>📖 Nuestra historia ❤️</h2>
-
-    <div class="evento">
-
-        <div class="fecha">
-            ❤️ 05/02/2026
-        </div>
-
-        <div class="descripcion">
-            El día en que comenzó la historia más bonita de mi vida.
-        </div>
-
-    </div>
-
-    <div class="evento">
-
-        <div class="fecha">
-            🌹 Nuestro primer detalle
-        </div>
-
-        <div class="descripcion">
-            Un pequeño gesto que se convirtió en un gran recuerdo.
-        </div>
-
-    </div>
-
-    <div class="evento">
-
-        <div class="fecha">
-            🥹 Nuestro primer paseo
-        </div>
-
-        <div class="descripcion">
-            Caminar contigo hizo que cualquier lugar se sintiera especial.
-        </div>
-
-    </div>
-
-    <div class="evento">
-
-        <div class="fecha">
-            💖 Hoy
-        </div>
-
-        <div class="descripcion">
-            Seguimos escribiendo esta historia, un día a la vez.
-        </div>
-
-    </div>
-
-</section>
-
-<section class="regalo">
-
-    <h2>🎁 Tengo una sorpresa para ti ❤️</h2>
-
-    <div id="caja">
-
-        🎁
-
-    </div>
-
-    <div id="mensajeOculto">
-
-        <h3>💌 Para ti</h3>
-
-        <p>
-
-            Gracias por llegar a mi vida.
-
-            <br><br>
-
-            Eres una de las mejores cosas que me han pasado.
-
-            <br><br>
-
-            Si pudiera volver a empezar, volvería a buscarte una y otra vez.
-
-            <br><br>
-
-            ❤️ Te amo infinitamente ❤️
-
-        </p>
-
-    </div>
-
-</section>
-
-<section class="aniversario">
-
-    <h2>📅 Nuestro próximo aniversario ❤️</h2>
-
-    <div class="contadorAniversario">
-
-        <div>
-
-            <span id="diasAniversario">0</span>
-
-            <p>Días</p>
-
-        </div>
-
-        <div>
-
-            <span id="horasAniversario">0</span>
-
-            <p>Horas</p>
-
-        </div>
-
-        <div>
-
-            <span id="minutosAniversario">0</span>
-
-            <p>Minutos</p>
-
-        </div>
-
-        <div>
-
-            <span id="segundosAniversario">0</span>
-
-            <p>Segundos</p>
-
-        </div>
-
-    </div>
-
-    <p class="mensajeAniversario">
-
-        💖 Cada segundo que pasa nos acerca a escribir un nuevo capítulo juntos.
-
-    </p>
-
-</section>
-
-
-<div class="slider">
-
-    <button class="anterior">❮</button>
-
-    <img id="foto" src="img/azul.jpeg">
-
-    <button class="siguiente">❯</button>
-
-</div>
-
-<div class="indicadores">
-
-    <span class="activo"></span>
-
-    <span></span>
-
-    <span></span>
-
-</div>
-<button id="lluvia">
-
-💖 Lluvia de Amor 💖
-
-</button>
-
-<button id="musica">
-
-🎵 Música
-
-</button>
-
-<audio id="audio" loop>
-
-<source src="Ben E. King  Stand By Me [Letra  Video].mp3" type="audio/mpeg">
-
-</audio>
-
-</div>
-
-<script src="amm.js"></script>
-
-<section class="finalHistoria">
-
-    <h2>❤️ Antes de irte... ❤️</h2>
-
-    <p>
-
-        Quiero hacerte una última pregunta.
-
-    </p>
-
-    <button id="amorInfinito">
-
-        💖 ¿Sabes cuánto te amo? 💖
-
-    </button>
-
-</section>
-
+    <script src="script.js"></script>
 </body>
-
-
-<div id="pantallaFinal">
-
-    <div class="mensajeFinal">
-
-        <h1>❤️</h1>
-
-        <h2>
-
-            No existe un reloj,<br>
-
-            ni un contador,<br>
-
-            ni una página web<br>
-
-            capaz de medir<br>
-
-            todo lo que siento por ti.
-
-        </h2>
-
-        <p>
-
-            Gracias por formar parte de mi vida.
-
-            <br><br>
-
-            Te elegiría una y otra vez.
-
-            <br><br>
-
-            ❤️ Alejo & Dannita ❤️
-
-        </p>
-
-    </div>
-
-</div>
-
 </html>

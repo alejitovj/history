@@ -247,23 +247,25 @@ setInterval(function () {
 const intro = document.getElementById("intro");
 const botonEntrar = document.getElementById("entrar");
 
-botonEntrar.addEventListener("click", () => {
+if (botonEntrar) {
 
-    if(audio){
+    botonEntrar.addEventListener("click", () => {
 
-        audio.play().catch(()=>{});
+        if(audio){
+            audio.play().catch(()=>{});
+        }
 
-    }
+        if(musica){
+            musica.textContent = "⏸️ Pausar Música";
+        }
 
-    if(musica){
+        if(intro){
+            intro.classList.add("ocultarIntro");
+        }
 
-        musica.textContent="⏸️ Pausar Música";
+    });
 
-    }
-
-    intro.classList.add("ocultarIntro");
-
-});
+}
 const fotos = [
 
 "img/azul.jpeg",
