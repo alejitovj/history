@@ -656,3 +656,43 @@ const listaRazones = [
             });
         }
     };
+    // ====================================================
+    // EFECTO PRESENCIA: DETECTOR DE INACTIVIDAD 💥
+    // ====================================================
+    let temporizadorInactividad;
+    const alertaPresencia = document.getElementById("efectoPresencia");
+    
+    // TIEMPO DE ESPERA: 20000 milisegundos = 20 segundos
+    const tiempoEspera = 20000; 
+
+    function mostrarMensaje() {
+        if (alertaPresencia) {
+            alertaPresencia.classList.remove("oculto");
+            alertaPresencia.classList.add("mostrar");
+        }
+    }
+
+    function ocultarMensaje() {
+        if (alertaPresencia) {
+            alertaPresencia.classList.remove("mostrar");
+            alertaPresencia.classList.add("oculto");
+        }
+        // Reseteamos el reloj para empezar a contar de nuevo
+        reiniciarTemporizador();
+    }
+
+    function reiniciarTemporizador() {
+        clearTimeout(temporizadorInactividad);
+        // Si pasan 20 segundos sin hacer nada, se ejecuta mostrarMensaje
+        temporizadorInactividad = setTimeout(mostrarMensaje, tiempoEspera);
+    }
+
+    // LISTA DE EVENTOS: Si Danna mueve el ratón, hace scroll o toca la pantalla en celular
+    const eventosInteraccion = ['mousemove', 'mousedown', 'touchstart', 'scroll', 'keydown'];
+    
+    eventosInteraccion.forEach(evento => {
+        window.addEventListener(evento, ocultarMensaje);
+    });
+
+    // Arrancamos el contador apenas cargue la página
+    reiniciarTemporizador();
