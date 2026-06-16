@@ -382,16 +382,18 @@ SLIDER
 ========================== */
 .razones{
     margin-top:70px;
-    background:rgba(255,255,255,.9);
+    background:rgba(255, 255, 255, 0.9);
     padding:40px;
     border-radius:30px;
     box-shadow:0 0 30px rgba(0,0,0,.15);
 }
-
+.razones h2, .razones h3 {
+    color: #6d214f; /* O el color oscuro que prefieras, como el de la carta */
+}
 #razon{
     font-size:25px;
     margin:40px 0;
-    color:#ff006e;
+    color:#ff0073;
     font-weight:bold;
     line-height:1.7;
     min-height:90px;
