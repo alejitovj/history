@@ -395,69 +395,102 @@ Te amo infinitamente 🖤`;
             }
         });
     }
-// ==============================
-    // PLAYLIST CON AUDIO ACTIVO 🎵
-    // ==============================
+// ====================================================
+    // PLAYLIST CON AUDIO ACTIVO Y CONTROL DE VOLUMEN 🎵💿
+    // ====================================================
     const datosCanciones = [
         {
             titulo: "🎵 Intro de Betty la fea",
             archivo: "betty.mpeg",
+            volumen: 0.5, // 👈 1.0 es el máximo, 0.5 es la mitad. ¡Modifica este número a tu gusto!
             dedicatoria: `🎤 "Se dice que soy fea, que camino a lo malevo, que soy chueca..."
 
-            🌹 Elegi este fragmento sabiendo que no puedo volver a escuchar esto de la misma manera, sé que en mi vida hay una niña hermosa que le encanta esta telenovela y se la ha visto muchas veces y eso me hace seguir pensando en ti.`
+            🌹 Elegí este fragmento sabiendo que no puedo volver a escuchar esto de la misma manera, sé que en mi vida hay una niña hermosa que le encanta esta telenovela y se la ha visto muchas veces y eso me hace seguir pensando en ti.`
         },
         {
             titulo: "🌹 Contigo - Los Panchos",
             archivo: "contigo.mpeg",
+            volumen: 1.0, // 👈 Si este se escucha pasito, déjalo en 1.0 (máximo volumen)
             dedicatoria: `🎤 "Te puedo yo jurar ante un altar Mi amor sincero, A todo el mundo le puedes contar Que sí te quiero..."
 
-            🖤 Como dice la letra, te podré jurar frente a un altar el amor tan grande que te tengo, como, compañera de vida, novia y esposa, lo que realmente seremos mas adelante en nuestras vidas, para que tengas un pedacito lo claro que es mi amor por ti.`
+            🖤 Como dice la letra, te podré jurar frente a un altar el amor tan grande que te tengo, como compañera de vida, novia y esposa, lo que realmente seremos más adelante en nuestras vidas, para que tengas un pedacito de lo claro que es mi amor por ti.`
         },
         {
-            titulo: "💥 Quimica Mayor - Mon Laferte",
+            titulo: "💥 Química Mayor - Mon Laferte",
             archivo: "quimica.mpeg",
+            volumen: 0.2, // 👈 Si suena muy duro, bájale a 0.6 o 0.7
             dedicatoria: `🎤 "Estamos tan enamorados Solos en el mundo, cómo un par de adolescentes Qué se aman locamente..."
 
-            🙈 Lo nuestro no fue por decision fue una quimica tan grande que tuvimos mucho mas antes de conocernos profundamente, la quimica que siento en ti es tan grande que podria estallar de puro amor por ti, teniendo un unico nombre Danna Zharick Cubillos Malagon`
+            🙈 Lo nuestro no fue por decisión, fue una química tan grande que tuvimos mucho antes de conocernos profundamente. La química que siento en ti es tan grande que podría estallar de puro amor por ti, teniendo un único nombre Danna Zharick Cubillos Malagón.`
         },
         {
             titulo: "✨ Te amo, Te extraño - Guayacán Orquesta",
             archivo: "teamo.mpeg",
+            volumen: 0.5, // 👈 La salsa suele venir con trompetas estalladas, mejor bajarle un tris
             dedicatoria: `🎤 "Yo deseaba encontrar un día Motivos de llenar mi vida Sin saberlo como adivina Llegaste tú..."
 
-            💖 Yo pedi una mujer grandiosa y linda como tu, deseando que llegase en mi vida sin importar el tiempo ahora que estas a mi lado, quiero decirte que no quiero que te vayas de mi vida, ya que la mayor parte de mi felicidad y de lo que soy es por ti.`
+            💖 Yo pedí una mujer grandiosa y linda como tú, deseando que llegase a mi vida sin importar el tiempo. Ahora que estás a mi lado, quiero decirte que no quiero que te vayas de mi vida, ya que la mayor parte de mi felicidad y de lo que soy es por ti.`
         }
     ];
 
-    window.cambiarCancion = function(indice) {
+    // Función global configurada para activar/pausar la música, la animación y nivelar volumen
+    window.cambiarCancion = function(indice, elemento) {
         const tituloVisor = document.getElementById("tituloDedicatoria");
         const letraVisor = document.getElementById("letraDedicatoria");
         const visor = document.getElementById("visorDedicatoria");
         
         // Reproductores de audio
-        const audioFondo = document.getElementById("audio"); // El de toda la página
-        const audioPlaylist = document.getElementById("audioPlaylist"); // El de la sección
+        const audioFondo = document.getElementById("audio"); 
+        const audioPlaylist = document.getElementById("audioPlaylist");
 
         if (tituloVisor && letraVisor && visor && audioPlaylist) {
             
-            // 1. Pausamos la música general de fondo para que no se mezclen
+            // Si das click a la tarjeta que YA está sonando, se pausa
+            if (elemento.classList.contains('sonando') && !audioPlaylist.paused) {
+                audioPlaylist.pause();
+                elemento.classList.remove('sonando');
+                return;
+            }
+
+            // Si estaba pausada pero era la misma tarjeta, le vuelve a dar play
+            if (elemento.classList.contains('sonando') && audioPlaylist.paused) {
+                audioPlaylist.play().catch(err => console.log("Error al reproducir: ", err));
+                return;
+            }
+            
+            // 1. Pausamos la música general de fondo
             if (audioFondo && !audioFondo.paused) {
                 audioFondo.pause();
                 const btnMusica = document.getElementById("btnMusica");
                 if (btnMusica) btnMusica.textContent = "🎵 Música";
             }
 
-            // 2. Efecto visual de transición
+            // 2. Quitamos la animación de giro de cualquier otro disco activo
+            document.querySelectorAll('.tarjeta-cancion').forEach(tarjeta => {
+                tarjeta.classList.remove('sonando');
+            });
+
+            // 3. Activamos el giro en la tarjeta actual
+            if (elemento) {
+                elemento.classList.add('sonando');
+            }
+
+            // 4. Efecto visual de transición en el texto
             visor.style.opacity = "0.3";
             visor.style.transform = "scale(0.98)";
 
             setTimeout(() => {
-                // 3. Cambiamos textos
+                // 5. Cambiamos textos dinámicamente
                 tituloVisor.textContent = datosCanciones[indice].titulo;
                 letraVisor.textContent = datosCanciones[indice].dedicatoria;
                 
-                // 4. Cargamos y reproducimos el pedacito de música
+                // 6. Cargamos el archivo, NIVELAMOS EL VOLUMEN y damos play
                 audioPlaylist.src = datosCanciones[indice].archivo;
+                
+                // 🔥 AQUÍ SE CONFIGURA EL VOLUMEN AUTOMÁTICO DE CADA CANCIÓN:
+                // Si el volumen viene definido en el objeto lo usa, si no, por defecto queda en 1.0
+                audioPlaylist.volume = datosCanciones[indice].volumen !== undefined ? datosCanciones[indice].volumen : 1.0;
+                
                 audioPlaylist.play().catch(err => console.log("Error al reproducir audio: ", err));
 
                 visor.style.opacity = "1";

@@ -727,9 +727,9 @@ FINAL
     font-weight: bold;
     animation: aparecerRegalo 0.5s ease forwards;
 }
-/* ==================================
-   PLAYLIST INTERACTIVA 🎵
-================================== */
+/* ====================================================
+   PLAYLIST INTERACTIVA (CON DISCOS EVOLUTIVOS) 🎵💿
+==================================================== */
 .seccion-playlist {
     margin-top: 70px;
     background: rgba(255, 255, 255, 0.15);
@@ -763,24 +763,67 @@ FINAL
 
 .tarjeta-cancion {
     background: white;
-    padding: 25px 20px;
+    padding: 20px 15px;
     border-radius: 20px;
     width: 220px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s ease;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .tarjeta-cancion:hover {
-    transform: translateY(-15px) scale(1.05);
-    box-shadow: 0 15px 30px hotpink;
-    background: #ffe0ea;
+    transform: translateY(-10px);
 }
 
-.disco-icono {
-    font-size: 50px;
-    margin-bottom: 15px;
-    animation: latido 3s infinite linear;
+/* Contenedor de la foto que se vuelve disco */
+.contenedor-foto-disco {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    position: relative;
+    border-radius: 15px; /* Cuadrada al inicio */
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.foto-cancion {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* CLASE QUE SE ACTIVA CUANDO ESTÁ SONANDO 💿🔥 */
+.tarjeta-cancion.sonando {
+    background: #ffe0ea;
+    border: 2px solid hotpink;
+    transform: scale(1.02);
+}
+
+.tarjeta-cancion.sonando .contenedor-foto-disco {
+    border-radius: 50%; /* Se vuelve círculo perfecto */
+    animation: rotarDisco 4s linear infinite; /* Empieza a girar */
+    border: 4px solid #111; /* Borde de vinilo */
+    box-shadow: 0 0 20px hotpink;
+}
+
+/* El huequito del centro del vinilo */
+.tarjeta-cancion.sonando .contenedor-foto-disco::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    background: #ffe0ea; 
+    border-radius: 50%;
+    border: 2px solid #111;
+}
+
+@keyframes rotarDisco {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .tarjeta-cancion h3 {
@@ -795,7 +838,7 @@ FINAL
     color: #ff006e;
 }
 
-/* Pantalla donde se lee la letra */
+/* Visor de texto */
 #visorDedicatoria {
     background: rgba(255, 255, 255, 0.95);
     padding: 35px;
@@ -819,7 +862,17 @@ FINAL
     color: #6d214f;
     line-height: 1.8;
     font-style: italic;
-    white-space: pre-line; /* Clave para respetar los saltos de línea */
+    white-space: pre-line;
+}
+
+/* Adaptación para celulares */
+@media screen and (max-width: 768px) {
+    .tarjeta-cancion {
+        width: 45%;
+        padding: 15px 10px;
+    }
+    .contenedor-foto-disco { width: 90px; height: 90px; }
+    #letraDedicatoria { font-size: 17px; }
 }
 
 /* Responsive para celulares */
