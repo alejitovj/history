@@ -257,30 +257,137 @@ Te amo infinitamente 🖤`;
         actualizarSlider();
     }, 5000);
 
-    // ==============================
-    // RAZONES ❤️
-    // ==============================
-    const listaRazones = [
-        "Porque contigo soy feliz.",
-        "Porque tu sonrisa alegra mis días.",
-        "Porque siempre me apoyas.",
-        "Porque haces que todo sea mejor.",
-        "Porque contigo me siento en casa.",
-        "Porque eres mi tranquilidad."
-    ];
+// ====================================
+// RAZONES ❤️ (CORREGIDO Y AJUSTADO)
+// ====================================
+const listaRazones = [
+    "Porque contigo soy feliz y todo es mejor. 🥰",
+    "Porque tu sonrisa alegra mis días por completo. 🌹",
+    "Porque siempre me apoyas en todo lo que hago. 🖤",
+    "Porque haces que cada momento sea especial. ✨",
+    "Porque contigo me siento en casa sin importar el lugar. 🏠",
+    "Porque eres mi tranquilidad y mi motivación diaria. ✨",
+    "Porque me encanta cómo eres conmigo y lo que me haces sentir. 🥺",
+    "Porque amo esa forma tan tuya de buscar mi mano cuando caminamos sin rumbo. 👫",
+    "Porque el universo entero conspiró para que coincidiéramos en el mismo salón de 11. 🌌",
+    "Porque si la realidad es una simulación, tú eres el único código que hace que todo tenga sentido. 💻",
+    "Porque eres esa canción que no puedo sacarme de la cabeza, pero que nunca me canso de escuchar. 🎵",
+    "Porque mi cámara ha capturado paisajes hermosos, pero ninguna foto supera la belleza de tu sonrisa. 📸",
+    "Porque tu respiración cerca de mi cuello es la melodía que me calma los días difíciles. 🤍",
+    "Porque me encanta que tengamos un lenguaje que solo se entiende con la mirada. 👀",
+    "Porque esos secretos que nos susurramos al oído se quedan solo entre los dos. 🤫",
+    "Porque en la mecánica de mi corazón, tú eres la pieza que hace que todo ruede a la perfección. ⚙️",
+    "Porque eres mi rincón de paz en un universo lleno de caos. 🪐",
+    "Porque podríamos estar en silencio horas y aun así sentir que lo dijimos todo. 🫂",
+    "Porque eres la única persona por la que dejaría todo en pausa solo para ir a verte. ⏳",
+    "Porque la calidez de tus abrazos cuando el frío de la ciudad nos atrapa lo cambia todo. 🧥",
+    "Porque eres esa estrella que brilla con luz propio en medio de mis noches más oscuras. ⭐",
+    "Porque me sé de memoria la forma de tus manos y cómo encajan perfectamente con las mías. 🤝",
+    "Porque con solo un mensaje tuyo, mi día cambia por completo a un modo feliz. 📱",
+    "Porque amo la complicidad de nuestras miradas cuando estamos rodeados de gente y nadie sabe qué pensamos. 👥",
+    "Porque podrían colapsar mil mundos, y yo te seguiría eligiendo en el que quede en pie. 🌍",
+    "Porque amo perder la noción del tiempo cuando nos quedamos hablando hasta tarde. 🌙",
+    "Porque eres el mejor proyecto que la vida me ha permitido empezar y que quiero cuidar siempre. 🚀",
+    "Porque tus labios son mi debilidad y mi lugar favorito en el mundo entero. 💋",
+    "Porque siento que en todas mis vidas pasadas te busqué, y en esta por fin te encontré. 🔄",
+    "Porque me encanta cómo haces que hasta el día más aburrido se vuelva una aventura. 🗺️",
+    "Porque eres mi presente favorito y el único futuro que me interesa construir. 🛠️",
+    "Porque esos besos tuyos me desconectan del mundo por unos segundos. 🌪️",
+    "Porque el espacio exterior es infinito, pero mis ganas de estar contigo lo superan por completo. 🛸",
+    "Porque tu sonrisa tiene el superpoder de borrar cualquier mal día en un segundo. ⚡",
+    "Porque te amo más de lo que amo mis mejores pasatiempos, y eso ya es decir demasiado. 🚲",
+    "Porque eres la prueba viviente de que la magia existe fuera de las pantallas. 🔮",
+    "Porque saber que me quieres me hace sentir el chico más afortunado del planeta. 🥇",
+    "Porque tu voz es mi canción favorita, la pondría en bucle para toda la vida. 🔁",
+    "Porque encajamos a la perfección cuando nos abrazamos fuerte. 🧩",
+    "Porque nuestro amor no es de este planeta; pertenece a una galaxia que apenas estamos descubriendo. ☄️",
+    "Porque amo cuando me miras de reojo y me regalas esa sonrisa cómplice. 😏",
+    "Porque eres la que me frena cuando voy muy rápido y la que me impulsa cuando me detengo. 🛑",
+    "Porque la paz infinita que me da dormir sabiendo que me quieres no se compara con nada. 💤",
+    "Porque eres mi constante en un universo donde todo lo demás cambia. 📈",
+    "Porque me encanta que seas mi lugar seguro, ese donde no tengo que fingir nada. 🔒",
+    "Porque estar contigo me hace sentir que ya gané el juego más difícil de todos. 🎮",
+    "Porque esos besos en la frente que me das me hacen sentir protegido. 🥺",
+    "Porque eres mi gravedad; no importa a dónde vaya, siempre me atraes de vuelta a ti. 🧲",
+    "Porque tu amor es como ese refugio cálido en medio de una tormenta de nieve. ❄️",
+    "Porque eres mi motivación para levantarme a programar un futuro juntos. 👨‍💻",
+    "Porque tu olor se queda impregnado en mi ropa y me acompaña todo el día. 👔",
+    "Porque si el destino existe, definitivamente se inspiró en ti para escribir mi futuro. 📜",
+    "Porque me fascina cómo logras descifrar lo que me pasa con solo mirarme un segundo. 🔍",
+    "Porque en mi mente siempre estás tú, ganándole el puesto a cualquier otro pensamiento. 🧠",
+    "Porque me encanta la manera en que me buscas cuando necesitas un refugio del mundo exterior. ⛈️",
+    "Porque contigo el tiempo no corre, se detiene para dejarnos flotar. 🎈",
+    "Porque eres la casualidad más hermosa que el destino cruzó en mi camino. 🍀",
+    "Porque esas caricias tuyas logran quitarme cualquier rastro de estrés. 💆‍♂️",
+    "Porque lo que siento por ti no cabe dentro de las leyes de la física. 📐",
+    "Porque amo la forma en que tus ojos brillan cuando me cuentas algo que te emociona. 💖",
+    "Porque si tuviera que armar una ruta perfecta para mi vida, tú serías el destino final. 📍",
+    "Porque el roce de tus dedos con los míos me eriza la piel al instante. ⚡",
+    "Porque eres el misterio más hermoso del cosmos y mi respuesta favorita a todo. 🌌",
+    "Porque eres la razón por la que ahora creo que las cosas buenas de verdad existen. 🥺",
+    "Porque amo cuando me escuchas hablar de las cosas que me apasionan con tanta atención. 🫶",
+    "Porque el calor de tu piel contra la mía se siente como estar en casa. 🔥",
+    "Porque amar al resto del mundo es terrenal; amarte a ti es tocar el cielo con las manos. ☁️",
+    "Porque eres mi pensamiento favorito antes de dormir y el primero al despertar. ☀️",
+    "Porque tu amor me hace querer ser la mejor versión de mí mismo todos los días. 💎",
+    "Porque nadie me conoce en mi versión más real e íntima como me conoces tú. 🎭",
+    "Porque mi mundo era en blanco y negro hasta que tu luz lo pintó de todos los colores. 🎨",
+    "Porque me encanta que tengamos chistes internos que nadie más en el mundo entiende. 😹",
+    "Porque me encanta cómo me apoyas en mis locuras, mis metas y mis proyectos. 🎯",
+    "Porque haces que los momentos más simples se vuelvan los más íntimos y especiales. 🕯️",
+    "Porque hay millones de personas en la Tierra, pero mi alma solo te reconoce a ti. 🌍",
+    "Porque cada vez que nos despedimos, mi mente ya empieza la cuenta regresiva para verte otra vez. ⏳",
+    "Porque eres mi refugio cuando la rutina del colegio y las tareas se ponen pesadas. 📚",
+    "Porque amo la forma en que me miras cuando crees que no me doy cuenta. 🕵️‍♂️",
+    "Because estar contigo es como ver una aurora boreal por primera vez: mágico e inolvidable. 🌌",
+    "Porque el mundo puede estar cayéndose a pedazos, pero contigo me siento invencible. 🛡️",
+    "Porque eres esa persona con la que quiero compartir cada logro y cada victoria. 🏆",
+    "Porque amo cuando nos reímos de tonterías que solo nosotros dos entendemos. 🤪",
+    "Porque ni el algoritmo más perfecto habría logrado diseñar a alguien tan ideal para mí. ⚙️",
+    "Porque eres ese cable a tierra que me recuerda lo que de verdad importa. ⚓",
+    "Porque me das una seguridad que nadie más en este planeta ha logrado darme. 🔒",
+    "Porque detrás de cada idea bonita que tengo, siempre hay un pensamiento dedicado a ti. 💭",
+    "Porque compartir el mismo salón hace que hasta las clases más aburridas sean perfectas. 🏫",
+    "Por los 'te amo' espontáneos que nos salvan el día. ❤️",
+    "Porque esas caminatas largas hablando de todo y de nada a la vez lo son todo. 🛣️",
+    "Porque nos entendemos con una sola seña cuando estamos con los amigos. 🤙",
+    "Porque terminar este año escolar a tu lado es el mejor cierre de etapa posible. 🎓",
+    "Porque esas promesas chiquitas que nos hacemos las cumplimos con el corazón. 🤙",
+    "Porque amo la forma en que cuidas de mí cuando me notas cansado o preocupado. 🩹",
+    "Porque los días de lluvia se vuelven perfectos si los paso abrazado a ti. 🌧️",
+    "Porque contigo aprendí lo que realmente significa querer bonito. 💞",
+    "Porque me encanta planear citas contigo, desde ir por un helado hasta perder el tiempo juntos. 🍦",
+    "Porque con cada canción que escucho, inevitablemente termino pensando en ti. 🎧",
+    "Porque eres la dueña de mis mejores risas y de mis pensamientos más profundos. 💭",
+    "Porque amo la forma en que defiendes lo nuestro ante cualquier tormenta. 🌪️",
+    "Porque no hay un solo día en que me arrepienta de haberte dicho lo que sentía. 🗣️",
+    "Porque haces que los días normales se conviertan en recuerdos extraordinarios. ✨",
+    "Porque amo tu paciencia infinita y esa ternura que me desarma por completo. 🧸",
+    "Porque eres mi novia, mi mejor amiga y mi confidente, todo en una sola persona. 🥇",
+    "Porque amo la historia que ya escribimos y todas las hojas en blanco que nos faltan por llenar. 📖",
+    "Porque amo las mañanas en las que sé que te voy a ver y a abrazar. 🌅",
+    "Porque, en resumen, no me imagino este mundo —ni ningún otro— si no es de tu mano, Dannita. ❤️"
+];
 
     const razon = document.getElementById("razon");
     const btnRazon = document.getElementById("btnRazon");
 
     if (btnRazon && razon) {
         btnRazon.addEventListener("click", () => {
+            // 1. Elegimos una razón aleatoria de la lista
             const r = listaRazones[Math.floor(Math.random() * listaRazones.length)];
-            razon.style.opacity = 0;
+            
+            // 2. Transición limpia: desvanecemos el texto viejo rápido
+            razon.style.transition = "opacity 0.2s ease, transform 0.2s ease";
+            razon.style.opacity = "0";
+            razon.style.transform = "scale(0.95)";
 
+            // 3. Cambiamos el texto en el fondo y lo volvemos a mostrar elegante
             setTimeout(() => {
                 razon.textContent = r;
-                razon.style.opacity = 1;
-            }, 300);
+                razon.style.opacity = "1";
+                razon.style.transform = "scale(1)";
+            }, 200); // 200 milisegundos de espera para el cambio
         });
     }
 
