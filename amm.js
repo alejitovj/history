@@ -243,18 +243,7 @@ setInterval(function () {
     document.title = frases[Math.floor(Math.random() * frases.length)];
 
 }, 5000);
-const pantallaInicio = document.getElementById("pantallaInicio");
-const botonEntrar = document.getElementById("entrar");
 
-botonEntrar.addEventListener("click", () => {
-
-    audio.play().catch(() => {});
-
-    musica.textContent = "⏸️ Pausar Música";
-
-    pantallaInicio.classList.add("ocultar");
-
-});
 const intro = document.getElementById("intro");
 const botonEntrar = document.getElementById("entrar");
 
@@ -414,7 +403,14 @@ function actualizarAniversario(){
 
 const ahora=new Date();
 
-let proximo=new Date(agora = ahora);
+const proximo = new Date(
+    ahora.getFullYear(),
+    1,
+    5,
+    0,
+    0,
+    0
+);
 
 proximo.setMonth(1); // febrero
 proximo.setDate(5);
