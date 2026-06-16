@@ -243,3 +243,35 @@ setInterval(function () {
     document.title = frases[Math.floor(Math.random() * frases.length)];
 
 }, 5000);
+const pantallaInicio = document.getElementById("pantallaInicio");
+const botonEntrar = document.getElementById("entrar");
+
+botonEntrar.addEventListener("click", () => {
+
+    audio.play().catch(() => {});
+
+    musica.textContent = "⏸️ Pausar Música";
+
+    pantallaInicio.classList.add("ocultar");
+
+});
+const intro = document.getElementById("intro");
+const botonEntrar = document.getElementById("entrar");
+
+botonEntrar.addEventListener("click", () => {
+
+    if(audio){
+
+        audio.play().catch(()=>{});
+
+    }
+
+    if(musica){
+
+        musica.textContent="⏸️ Pausar Música";
+
+    }
+
+    intro.classList.add("ocultarIntro");
+
+});
