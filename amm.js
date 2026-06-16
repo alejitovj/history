@@ -247,25 +247,25 @@ setInterval(function () {
 const intro = document.getElementById("intro");
 const botonEntrar = document.getElementById("entrar");
 
-if (botonEntrar) {
+botonEntrar.addEventListener("click", function(){
 
-    botonEntrar.addEventListener("click", () => {
+    const audio=document.getElementById("audio");
 
-        if(audio){
-            audio.play().catch(()=>{});
-        }
+    if(audio){
 
-        if(musica){
-            musica.textContent = "⏸️ Pausar Música";
-        }
+        audio.play().catch(()=>{});
 
-        if(intro){
-            intro.classList.add("ocultarIntro");
-        }
+    }
 
-    });
+    intro.style.opacity="0";
 
-}
+    setTimeout(function(){
+
+        intro.style.display="none";
+
+    },1000);
+
+});
 const fotos = [
 
 "img/azul.jpeg",
