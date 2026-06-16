@@ -486,3 +486,122 @@ text-shadow:0 0 10px hotpink;
 animation:latido 3s infinite;
 
 }
+/* ==========================
+   CELULARES
+========================== */
+
+@media screen and (max-width:768px){
+
+.contenido{
+
+padding:20px 10px;
+
+}
+
+h1{
+
+font-size:48px;
+
+line-height:1.2;
+
+}
+
+h2{
+
+font-size:20px;
+
+}
+
+.frase-principal{
+
+font-size:22px;
+
+padding:0 10px;
+
+}
+
+.contador{
+
+padding:20px;
+
+}
+
+.contador h3{
+
+font-size:28px;
+
+}
+
+.tiempo{
+
+gap:10px;
+
+}
+
+.tiempo div{
+
+width:45%;
+
+padding:15px;
+
+}
+
+.tiempo span{
+
+font-size:35px;
+
+}
+
+.tiempo p{
+
+font-size:16px;
+
+}
+
+.carta{
+
+padding:20px;
+
+font-size:18px;
+
+line-height:1.8;
+
+}
+
+.carta h2{
+
+font-size:42px;
+
+}
+
+.galeria{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.galeria img{
+
+width:95%;
+
+height:auto;
+
+}
+
+button{
+
+width:95%;
+
+font-size:18px;
+
+padding:15px;
+
+margin:10px auto;
+
+display:block;
+
+}
+
+}

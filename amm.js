@@ -194,27 +194,35 @@ if (lluvia) {
 const audio = document.getElementById("audio");
 const musica = document.getElementById("musica");
 
-if (audio && musica) {
+function iniciarMusica() {
 
-    musica.addEventListener("click", function () {
+    audio.play().catch(() => {});
 
-        if (audio.paused) {
-
-            audio.play();
-
-            musica.textContent = "⏸️ Pausar Música";
-
-        } else {
-
-            audio.pause();
-
-            musica.textContent = "🎵 Música";
-
-        }
-
-    });
+    document.removeEventListener("touchstart", iniciarMusica);
+    document.removeEventListener("click", iniciarMusica);
 
 }
+
+document.addEventListener("touchstart", iniciarMusica, { once: true });
+document.addEventListener("click", iniciarMusica, { once: true });
+
+musica.addEventListener("click", function () {
+
+    if (audio.paused) {
+
+        audio.play();
+
+        musica.textContent = "⏸️ Pausar Música";
+
+    } else {
+
+        audio.pause();
+
+        musica.textContent = "🎵 Música";
+
+    }
+
+});
 
 // ==============================
 // FRASES ❤️
