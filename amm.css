@@ -293,6 +293,7 @@ INTRO
     width:2px;
     height:2px;
     background:white;
+    pointer-events: none;
     box-shadow:
         50px 100px white,
         150px 300px white,
@@ -1121,4 +1122,10 @@ body.modo-neon .jueguito-amor h3,
 body.modo-neon .jueguito-amor p {
     color: #ffffff !important;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.3) !important;
+}
+/* Forzar que el botón sea lo único clickeable en la bienvenida */
+#btnIntro {
+    position: relative !important;
+    z-index: 1000 !important;
+    pointer-events: auto !important;
 }

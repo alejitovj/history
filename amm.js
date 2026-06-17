@@ -4,40 +4,67 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ==============================
-    // TRANSICIÓN DIRECTA (FADE EFFECT)
-    // ==============================
+// ==========================================
+    // CONTROL DE INTRO: DIRECTO Y SIN ERRORES 💝🎵
+    // ==========================================
     const btnIntro = document.getElementById("btnIntro");
     const intro = document.getElementById("intro");
     const contenido = document.querySelector(".contenido");
 
     if (btnIntro) {
-        btnIntro.addEventListener("click", function () {
+        // Buscamos el elemento de audio directamente de forma segura
+        const miAudioIntro = document.getElementById("audio");
+        if (miAudioIntro) {
+            miAudioIntro.volume = 0; // Lo muteamos al arrancar la página
+        }
+
+        // El evento escucha ÚNICAMENTE al botón rosa
+        btnIntro.addEventListener("click", function (e) {
+            // Detiene cualquier propagación hacia el fondo negro
+            e.stopPropagation();
+
             if (intro && contenido) {
-                // 1. Desvanecemos la pantalla de la luna (Fade-out)
+                // Volvemos a asegurar que esté en 0 para el Fade-In
+                if (miAudioIntro) {
+                    miAudioIntro.volume = 0;
+                }
+
+                // 2. Desvanecer la pantalla de la luna (Fade-out)
                 intro.style.transition = "opacity 1s ease";
                 intro.style.opacity = "0";
 
-                // 2. Esperamos 1 segundo a que termine la animación
+                // 3. Esperar 1 segundo a que termine la animación visual
                 setTimeout(() => {
-                    intro.style.display = "none"; // Ocultamos por completo la intro
+                    intro.style.display = "none"; // Se oculta por completo la intro
 
-                    // 3. Activamos el contenedor principal
+                    // 4. Mostrar la carta principal con Fade-in
                     contenido.style.display = "block";
                     contenido.style.opacity = "0";
                     contenido.style.transition = "opacity 1s ease";
 
-                    // Pequeño delay imperceptible para que el navegador aplique el Fade-in
                     setTimeout(() => {
                         contenido.style.opacity = "1";
                     }, 50);
 
-                    // Intentar reproducir música automáticamente al entrar
-                    const audio = document.getElementById("audio");
-                    if (audio) {
-                        audio.play().catch(() => console.log("La reproducción automática requirió interacción"));
-                        const btnMusica = document.getElementById("btnMusica");
-                        if (btnMusica) btnMusica.textContent = "⏸️ Pausar Música";
+                    // 5. Reproducir la música con volumen gradual (Fade-in real)
+                    if (miAudioIntro) {
+                        miAudioIntro.play().then(() => {
+                            const btnMusica = document.getElementById("btnMusica");
+                            if (btnMusica) btnMusica.textContent = "⏸️ Pausar Música";
+
+                            // Sube el volumen gradualmente cada 150ms hasta llegar a 1
+                            let intervaloFade = setInterval(() => {
+                                if (miAudioIntro.volume < 0.95) {
+                                    miAudioIntro.volume += 0.05; // Sube de a 5%
+                                } else {
+                                    miAudioIntro.volume = 1; // Máximo estable
+                                    clearInterval(intervaloFade); // Apaga el relojito
+                                }
+                            }, 150);
+
+                        }).catch((error) => {
+                            console.log("El navegador bloqueó el audio:", error);
+                        });
                     }
 
                 }, 1000);
@@ -127,7 +154,7 @@ Te amo infinitamente 🖤`;
     // ==============================
     // CURSOR ✨
     // ==============================
-    document.addEventListener("mousemove", function (e) {
+    document.addEventListener("DOMContentLoaded", function () {
         const brillo = document.createElement("div");
         brillo.innerHTML = "✨";
         brillo.style.position = "fixed";
