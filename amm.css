@@ -1,791 +1,544 @@
-/* ===========================
-   FUENTES Y CONFIGURACIÓN
-=========================== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#ff5f9e,#ff8fb1,#ffc2d1,#ffe0ea);
-    background-size:400% 400%;
-    animation:fondo 15s ease infinite;
-    overflow-x:hidden;
-    min-height:100vh;
-}
-
-/* Fondo animado */
-@keyframes fondo{
-    0%{ background-position:0% 50%; }
-    50%{ background-position:100% 50%; }
-    100%{ background-position:0% 50%; }
-}
-
-/* ===========================
-CONTENEDOR PRINCIPAL
-=========================== */
-.contenido{
-    display: none;       /* Oculto al inicio para evitar parpadeos */
-    opacity: 0;          /* Preparado para el fade-in de JS */
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    padding:50px 20px;
-    text-align:center;
-}
-
-/* ===========================
-TÍTULOS
-=========================== */
-h1{
-    font-family:'Great Vibes',cursive;
-    font-size:85px;
-    color:white;
-    text-shadow:
-        0 0 10px hotpink,
-        0 0 20px hotpink,
-        0 0 40px deeppink;
-    animation:latido 2s infinite;
-}
-
-h2{
-    margin-top:15px;
-    font-size:30px;
-    color:white;
-    font-weight:300;
-    letter-spacing:2px;
-}
-
-/* ===========================
-LATIDO
-=========================== */
-@keyframes latido{
-    0%{ transform:scale(1); }
-    50%{ transform:scale(1.05); }
-    100%{ transform:scale(1); }
-}
-
-/* ===========================
-CONTADOR
-=========================== */
-.contador{
-    margin-top:60px;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(20px);
-    padding:35px;
-    border-radius:30px;
-    box-shadow:0 0 40px rgba(255,255,255,.2);
-}
-
-.contador h3{
-    font-size:35px;
-    margin-bottom:30px;
-    color:white;
-}
-
-.tiempo{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-}
-
-.tiempo div{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    width:150px;
-    transition:.5s;
-    box-shadow:0 0 20px rgba(255,20,147,.3);
-}
-
-.tiempo div:hover{
-    transform:translateY(-12px) scale(1.05);
-    box-shadow:0 0 35px hotpink;
-}
-
-.tiempo span{
-    font-size:55px;
-    font-weight:bold;
-    color:#ff006e;
-}
-
-.tiempo p{
-    font-size:20px;
-    margin-top:8px;
-}
-
-/* ===========================
-CARTA
-=========================== */
-.carta{
-    margin-top:60px;
-    background:rgba(255,255,255,.9);
-    padding:45px;
-    border-radius:30px;
-    line-height:2;
-    font-size:22px;
-    color:#6d214f;
-    box-shadow:0 0 30px rgba(0,0,0,.15);
-    transition:.5s;
-}
-
-.carta:hover{
-    transform:scale(1.01);
-}
-
-.carta h2{
-    color:#ff006e;
-    margin-bottom:25px;
-    font-family:'Great Vibes',cursive;
-    font-size:55px;
-}
-
-/* ===========================
-GALERÍA
-=========================== */
-.galeria{
-    margin-top:60px;
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    flex-wrap:wrap;
-}
-
-.galeria img{
-    width:280px;
-    height:360px;
-    object-fit:cover;
-    border-radius:25px;
-    border:5px solid white;
-    transition:.6s;
-    box-shadow:0 0 25px rgba(0,0,0,.25);
-}
-
-.galeria img:hover{
-    transform:rotate(-2deg) scale(1.08);
-    box-shadow:0 0 35px hotpink;
-}
-
-/* ===========================
-BOTONES
-=========================== */
-button{
-    margin:25px;
-    padding:18px 45px;
-    border:none;
-    border-radius:50px;
-    font-size:20px;
-    cursor:pointer;
-    color:white;
-    background:linear-gradient(90deg,#ff006e,#ff4d94);
-    transition:.5s;
-    box-shadow:0 0 20px hotpink;
-}
-
-button:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 40px deeppink;
-}
-
-/* ===========================
-ESTRELLAS
-=========================== */
-#estrellas{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    background-image: radial-gradient(white 1px,transparent 1px);
-    background-size:70px 70px;
-    opacity:.35;
-    animation:moverEstrellas 40s linear infinite;
-}
-
-@keyframes moverEstrellas{
-    from{ transform:translateY(0); }
-    to{ transform:translateY(100px); }
-}
-
-/* ===========================
-PÉTALOS
-=========================== */
-.petalo{
-    position:fixed;
-    top:-100px;
-    font-size:30px;
-    animation:caer linear forwards;
-    pointer-events:none;
-    z-index:999;
-}
-
-@keyframes caer{
-    0%{ transform:translateY(-100px) rotate(0deg); opacity:1; }
-    100%{ transform:translateY(120vh) rotate(720deg); opacity:0; }
-}
-
-.frase-principal{
-    margin-top:30px;
-    font-size:28px;
-    font-family:'Great Vibes',cursive;
-    color:white;
-    text-shadow:0 0 10px hotpink;
-    animation:latido 3s infinite;
-}
-
-/* ==========================
-   PANTALLA INICIO (Opcional / Deshabilitada)
-========================== */
-#pantallaInicio{
-    display: none !important; /* Forzamos su desaparición para evitar cruces */
-}
-
-/*==========================
-INTRO
-==========================*/
-#intro{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(180deg,#090c1f,#1d1b38,#3f1f52);
-    overflow:hidden;
-    z-index:999999;
-    opacity: 1;
-    transition: opacity 1s ease; /* Transición fluida controlada por el JS */
-}
-
-.contenidoIntro{
-    text-align:center;
-    padding:20px;
-    animation:aparecer 2s;
-}
-
-.contenidoIntro h1{
-    font-size:80px;
-    color:white;
-    margin-bottom:30px;
-}
-
-.contenidoIntro p{
-    font-size:28px;
-    color:white;
-    line-height:1.8;
-    margin-bottom:40px;
-}
-
-@keyframes aparecer{
-    from{ opacity:0; transform:translateY(80px); }
-    to{ opacity:1; transform:translateY(0); }
-}
-
-#intro::before{
-    content:"";
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    pointer-events: none;
-    box-shadow:
-        50px 100px white,
-        150px 300px white,
-        250px 80px white,
-        400px 250px white,
-        550px 120px white,
-        700px 330px white,
-        850px 180px white,
-        1000px 90px white,
-        1200px 270px white,
-        1350px 60px white;
-    animation:parpadeo 3s infinite alternate;
-}
-
-@keyframes parpadeo{
-    from{ opacity:.3; }
-    to{ opacity:1; }
-}
-
-.luna{
-    position:absolute;
-    top:70px;
-    right:100px;
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    background:white;
-    box-shadow: 0 0 30px white, 0 0 80px white;
-    opacity:.9;
-}
-
-/*==========================
-SLIDER
-==========================*/
-.slider{
-    margin-top:60px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-}
-
-.slider img{
-    width:350px;
-    height:500px;
-    object-fit:cover;
-    border-radius:30px;
-    border:5px solid white;
-    box-shadow:0 0 30px rgba(0,0,0,.3);
-    transition:.8s;
-}
-
-.slider img:hover{
-    transform:scale(1.03);
-}
-
-.slider button{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    font-size:25px;
-}
-
-.indicadores{
-    margin-top:20px;
-    display:flex;
-    justify-content:center;
-    gap:10px;
-}
-
-.indicadores span{
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    background:white;
-    opacity:.4;
-    transition:.4s;
-}
-
-.indicadores .activo{
-    opacity:1;
-    transform:scale(1.5);
-}
-
-/* ==========================
-   RAZONES
-========================== */
-.razones{
-    margin-top:70px;
-    background:rgba(255, 255, 255, 0.9);
-    padding:40px;
-    border-radius:30px;
-    box-shadow:0 0 30px rgba(0,0,0,.15);
-}
-.razones h2, .razones h3 {
-    color: #6d214f; /* O el color oscuro que prefieras, como el de la carta */
-}
-#razon{
-    font-size:25px;
-    margin:40px 0;
-    color:#ff0073;
-    font-weight:bold;
-    line-height:1.7;
-    min-height:90px;
-    transition:.5s;
-}
-
-/*==========================
-TIMELINE
-==========================*/
-.timeline{
-    margin-top:80px;
-    padding:40px;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(20px);
-    border-radius:30px;
-}
-
-.timeline h2{
-    margin-bottom:50px;
-}
-
-.evento{
-    position:relative;
-    margin:40px auto;
-    padding-left:40px;
-    border-left:4px solid white;
-    max-width:700px;
-    text-align:left;
-}
-
-.evento::before{
-    content:"❤️";
-    position:absolute;
-    left:-18px;
-    top:0;
-    font-size:25px;
-}
-
-.fecha{
-    font-size:24px;
-    font-weight:bold;
-    color:white;
-    margin-bottom:10px;
-}
-
-.descripcion{
-    font-size:18px;
-    color:white;
-    line-height:1.8;
-}
-
-/*==========================
-REGALO
-==========================*/
-.regalo{
-    margin-top:80px;
-    padding:40px;
-    text-align:center;
-}
-
-#caja{
-    font-size:120px;
-    cursor:pointer;
-    transition:.5s;
-    animation:latido 2s infinite;
-}
-
-#caja:hover{
-    transform:scale(1.2) rotate(8deg);
-}
-
-#mensajeOculto{
-    margin-top:30px;
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    display:none;
-    color:#6d214f;
-    font-size:22px;
-    line-height:1.8;
-    box-shadow:0 0 30px rgba(0,0,0,.2);
-    animation:aparecerRegalo .8s;
-}
-
-@keyframes aparecerRegalo{
-    from{ opacity:0; transform:translateY(30px); }
-    to{ opacity:1; transform:translateY(0); }
-}
-
-/*==========================
-PRÓXIMO ANIVERSARIO
-==========================*/
-.aniversario{
-    margin-top:80px;
-    padding:40px;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(20px);
-    border-radius:30px;
-    text-align:center;
-}
-
-.contadorAniversario{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:30px;
-}
-
-.contadorAniversario div{
-    background:white;
-    padding:20px;
-    border-radius:20px;
-    width:140px;
-    box-shadow:0 0 20px rgba(255,20,147,.3);
-}
-
-.contadorAniversario span{
-    font-size:45px;
-    font-weight:bold;
-    color:#ff006e;
-}
-
-.mensajeAniversario{
-    margin-top:30px;
-    font-size:22px;
-    color:white;
-    line-height:1.8;
-}
-
-/*==========================
-FINAL
-==========================*/
-.finalHistoria{
-    margin-top:100px;
-    text-align:center;
-    padding:50px;
-}
-
-.finalHistoria p{
-    font-size:24px;
-    color:white;
-    margin:20px 0;
-}
-
-#pantallaFinal{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:rgba(0,0,0,.93);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    visibility:hidden;
-    transition:1.5s;
-    z-index:999999;
-    padding:20px;
-}
-
-#pantallaFinal.mostrar{
-    opacity:1;
-    visibility:visible;
-}
-
-.mensajeFinal{
-    text-align:center;
-    color:white;
-    animation:aparecerFinal 2s;
-}
-
-.mensajeFinal h1{
-    font-size:100px;
-}
-
-.mensajeFinal h2{
-    font-size:40px;
-    line-height:1.7;
-    margin:30px 0;
-}
-
-.mensajeFinal p{
-    font-size:24px;
-    line-height:1.8;
-}
-
-@keyframes aparecerFinal{
-    from{ opacity:0; transform:scale(.8); }
-    to{ opacity:1; transform:scale(1); }
-}
-
-/* ==================================
-   RESPONSIVE & MEDIA QUERIES (Móviles)
-================================== */
-@media(max-width:900px){
-    h1{ font-size:60px; }
-    h2{ font-size:22px; }
-    .carta{ font-size:18px; padding:25px; }
-    .tiempo div{ width:120px; padding:15px; }
-    .tiempo span{ font-size:40px; }
-}
-
-@media screen and (max-width:768px){
-    .contenido{ padding:20px 10px; }
-    h1{ font-size:48px; line-height:1.2; }
-    h2{ font-size:20px; }
-    .frase-principal{ font-size:22px; padding:0 10px; }
-    .contador{ padding:20px; }
-    .contador h3{ font-size:28px; }
-    .tiempo{ gap:10px; }
-    .tiempo div{ width:45%; padding:15px; }
-    .tiempo span{ font-size:35px; }
-    .tiempo p{ font-size:16px; }
-    .carta{ padding:20px; font-size:18px; line-height:1.8; }
-    .carta h2{ font-size:42px; }
-    .galeria{ flex-direction:column; align-items:center; }
-    .galeria img{ width:95%; height:auto; }
-    button{ width:95%; font-size:18px; padding:15px; margin:10px auto; display:block; }
-    
-    .contenidoIntro h1{ font-size:45px; }
-    .contenidoIntro p{ font-size:20px; padding:0 15px; }
-    .luna{ width:80px; height:80px; top:30px; right:30px; }
-    .slider{ flex-direction:column; }
-    .slider img{ width:95%; height:auto; }
-    .slider button{ width:55px; height:55px; font-size:22px; }
-    .timeline{ padding:20px; }
-    .fecha{ font-size:20px; }
-    .descripcion{ font-size:16px; }
-    .evento{ padding-left:25px; }
-    .contadorAniversario div{ width:45%; }
-    .mensajeAniversario{ font-size:18px; }
-    .mensajeFinal h1{ font-size:70px; }
-    .mensajeFinal h2{ font-size:24px; }
-    .mensajeFinal p{ font-size:18px; }
-}
-/* Modifica tu #pantallaFinal actual para que use un fondo difuminado y mejor transición */
-#pantallaFinal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(9, 12, 31, 0.96); /* Fondo oscuro profundo */
-    backdrop-filter: blur(10px);        /* Difumina el fondo de atrás */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+:root {
+    --rosa: #ff006e;
+    --rosa-2: #ff4d94;
+    --morado: #bd00ff;
+    --cyan: #00f0ff;
+    --vino: #6d214f;
+    --noche: #0d0b14;
+    --blanco: #fff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #ff5f9e, #ff8fb1, #ffc2d1, #ffe0ea);
+    background-size: 400% 400%;
+    animation: fondo 15s ease infinite;
+}
+
+button {
+    margin: 25px;
+    padding: 18px 45px;
+    border: 0;
+    border-radius: 50px;
+    color: var(--blanco);
+    background: linear-gradient(90deg, var(--rosa), var(--rosa-2));
+    box-shadow: 0 0 20px hotpink;
+    cursor: pointer;
+    font: inherit;
+    font-size: 20px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px deeppink;
+}
+
+button:disabled {
+    cursor: default;
+    opacity: 0.75;
+}
+
+h1 {
+    color: var(--blanco);
+    font-family: "Great Vibes", cursive;
+    font-size: 85px;
+    text-shadow: 0 0 10px hotpink, 0 0 20px hotpink, 0 0 40px deeppink;
+    animation: latido 2s infinite;
+}
+
+h2 {
+    margin-top: 15px;
+    color: var(--blanco);
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+section {
+    margin-top: 70px;
+}
+
+.contenido {
+    display: none;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px;
+    text-align: center;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.2s ease, visibility 1.2s ease; /* Transición súper suave */
-    z-index: 9999999;
+    transition: opacity 1s ease;
+}
+
+@keyframes fondo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(80px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes caer {
+    from { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    to { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes brilloCursor {
+    from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    to { transform: translate(-50%, -90%) scale(0.4); opacity: 0; }
+}
+
+@keyframes rotarDisco {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(180deg, #090c1f, #1d1b38, #3f1f52);
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+#intro::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--blanco);
+    box-shadow: 50px 100px white, 150px 300px white, 250px 80px white, 400px 250px white, 550px 120px white, 700px 330px white, 850px 180px white, 1000px 90px white, 1200px 270px white, 1350px 60px white;
+    animation: parpadeo 3s infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes parpadeo {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+.luna {
+    position: absolute;
+    top: 70px;
+    right: 100px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--blanco);
+    box-shadow: 0 0 30px white, 0 0 80px white;
+    opacity: 0.9;
+}
+
+.contenidoIntro {
+    padding: 20px;
+    text-align: center;
+    animation: aparecer 2s;
+}
+
+.contenidoIntro h1 {
+    margin-bottom: 30px;
+    font-size: 80px;
+}
+
+.contenidoIntro p {
+    margin-bottom: 40px;
+    color: var(--blanco);
+    font-size: 28px;
+    line-height: 1.8;
+}
+
+#btnIntro {
+    position: relative;
+    z-index: 2;
+}
+
+#estrellas {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 70px 70px;
+    opacity: 0.35;
+    pointer-events: none;
+    animation: moverEstrellas 40s linear infinite;
+}
+
+@keyframes moverEstrellas {
+    from { transform: translateY(0); }
+    to { transform: translateY(100px); }
+}
+
+.petalo,
+.brillo-cursor {
+    position: fixed;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.petalo {
+    top: -100px;
+    animation: caer linear forwards;
+}
+
+.brillo-cursor {
+    animation: brilloCursor 0.7s ease-out forwards;
+}
+
+.frase-principal {
+    margin-top: 30px;
+    color: var(--blanco);
+    font-family: "Great Vibes", cursive;
+    font-size: 28px;
+    text-shadow: 0 0 10px hotpink;
+    animation: latido 3s infinite;
+}
+
+.contador,
+.timeline,
+.aniversario,
+.seccion-playlist {
+    padding: 40px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(20px);
+}
+
+.contador h3 {
+    margin-bottom: 30px;
+    color: var(--blanco);
+    font-size: 35px;
+}
+
+.tiempo,
+.contadorAniversario {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.tiempo div,
+.contadorAniversario div {
+    width: 150px;
+    padding: 24px;
+    border-radius: 20px;
+    background: var(--blanco);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.tiempo div:hover {
+    transform: translateY(-12px) scale(1.05);
+    box-shadow: 0 0 35px hotpink;
+}
+
+.tiempo span,
+.contadorAniversario span {
+    color: var(--rosa);
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.tiempo p,
+.contadorAniversario p {
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+.carta,
+.razones {
+    padding: 45px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+    color: var(--vino);
+    line-height: 2;
+    transition: transform 0.35s ease;
+}
+
+.carta:hover {
+    transform: scale(1.01);
+}
+
+.carta h2 {
+    margin-bottom: 25px;
+    color: var(--rosa);
+    font-family: "Great Vibes", cursive;
+    font-size: 55px;
+}
+
+.carta p {
+    font-size: 22px;
+    white-space: pre-line;
+}
+
+.razones h2 {
+    color: var(--vino);
+}
+
+#razon {
+    min-height: 90px;
+    margin: 40px 0;
+    color: #ff0073;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.timeline h2 {
+    margin-bottom: 50px;
+}
+
+.evento {
+    position: relative;
+    max-width: 700px;
+    margin: 40px auto;
+    padding-left: 40px;
+    border-left: 4px solid white;
+    text-align: left;
+}
+
+.evento::before {
+    content: "❤️";
+    position: absolute;
+    top: 0;
+    left: -18px;
+    font-size: 25px;
+}
+
+.fecha {
+    margin-bottom: 10px;
+    color: var(--blanco);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.descripcion {
+    color: var(--blanco);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.regalo {
+    padding: 40px;
+    text-align: center;
+}
+
+#caja {
+    font-size: 120px;
+    cursor: pointer;
+    animation: latido 2s infinite;
+    transition: transform 0.35s ease;
+}
+
+#caja:hover {
+    transform: scale(1.2) rotate(8deg);
+}
+
+#mensajeOculto {
+    display: none;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 25px;
+    background: var(--blanco);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    color: var(--vino);
+    font-size: 22px;
+    line-height: 1.8;
+    animation: aparecerRegalo 0.8s;
+}
+
+@keyframes aparecerRegalo {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.contadorAniversario {
+    margin-top: 30px;
+}
+
+.contadorAniversario div {
+    width: 140px;
     padding: 20px;
 }
 
-#pantallaFinal.mostrar {
+.mensajeAniversario {
+    margin-top: 30px;
+    color: var(--blanco);
+    font-size: 22px;
+    line-height: 1.8;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.slider img {
+    width: 350px;
+    height: 500px;
+    border: 5px solid white;
+    border-radius: 30px;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.slider img:hover {
+    transform: scale(1.03);
+}
+
+.slider button {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 25px;
+}
+
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.indicadores span {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.indicadores .activo {
     opacity: 1;
-    visibility: visible;
+    transform: scale(1.5);
 }
 
-/* Animación especial para el emoji gigante de la pantalla final */
-.corazon-latiendo {
-    font-size: 110px !important;
-    animation: latidoEspecial 1.5s infinite alternate ease-in-out;
-}
-
-@keyframes latidoEspecial {
-    0% { transform: scale(1); filter: drop-shadow(0 0 10px #ff006e); }
-    100% { transform: scale(1.2); filter: drop-shadow(0 0 35px deeppink); }
-}
-/* ==================================
-   JUEGUITO INTERACTIVO 🎮
-================================== */
 .jueguito-amor {
-    margin-top: 70px;
-    background: rgba(73, 73, 73, 0.9);
+    position: relative;
+    min-height: 350px;
     padding: 50px 40px;
     border-radius: 30px;
-    box-shadow: 0 0 30px rgba(0,0,0,.15);
+    background: rgba(73, 73, 73, 0.9);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
     text-align: center;
-    position: relative; /* Clave para que el botón NO no se salga de esta zona al inicio */
-    min-height: 350px;
 }
 
 .jueguito-amor h2 {
-    color: #ff006e !important;
+    color: var(--rosa);
     font-size: 28px;
-    margin-bottom: 10px;
 }
 
 .jueguito-amor h3 {
+    margin: 10px 0 40px;
+    color: var(--vino);
     font-size: 32px;
-    color: #6d214f;
-    margin-bottom: 40px;
 }
 
 .contenedor-botones-juego {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    flex-wrap: wrap;
     min-height: 80px;
 }
 
-/* Estilo específico para el botón SÍ */
 #btnSiJuego {
     background: linear-gradient(90deg, #00b4d8, #0077b6);
     box-shadow: 0 0 20px rgba(0, 119, 182, 0.5);
 }
-#btnSiJuego:hover {
-    box-shadow: 0 0 35px #0077b6;
-    transform: scale(1.1);
-}
 
-/* Estilo específico para el botón NO (Esquivo) */
 #btnNoJuego {
+    z-index: 999;
     background: linear-gradient(90deg, #7209b7, #f72585);
     box-shadow: 0 0 20px rgba(114, 9, 183, 0.5);
-    transition: all 0.2s ease; /* Movimiento rápido y fluido */
-    z-index: 999;
+    transition: left 0.2s ease, top 0.2s ease, transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Mensaje oculto al principio */
 #mensajeVictoria {
     display: none;
     margin-top: 30px;
+    color: var(--rosa);
+    font-family: "Great Vibes", cursive;
     font-size: 26px;
-    font-family: 'Great Vibes', cursive;
-    color: #ff006e;
-    font-weight: bold;
+    font-weight: 700;
     animation: aparecerRegalo 0.5s ease forwards;
-}
-/* ====================================================
-   PLAYLIST INTERACTIVA (CON DISCOS EVOLUTIVOS) 🎵💿
-==================================================== */
-.seccion-playlist {
-    margin-top: 70px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    padding: 50px 30px;
-    border-radius: 30px;
-    box-shadow: 0 0 30px rgba(255, 20, 147, 0.2);
-    text-align: center;
 }
 
 .seccion-playlist h2 {
-    color: white !important;
-    font-size: 32px;
-    text-shadow: 0 0 10px hotpink;
     margin-bottom: 5px;
+    text-shadow: 0 0 10px hotpink;
 }
 
 .subtitulo-playlist {
+    margin-bottom: 40px;
     color: #ffe0ea;
     font-size: 18px;
-    margin-bottom: 40px;
 }
 
 .contenedor-playlist {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
     margin-bottom: 40px;
 }
 
 .tarjeta-cancion {
-    background: white;
+    display: block;
+    width: 220px;
+    margin: 0;
     padding: 20px 15px;
     border-radius: 20px;
-    width: 220px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    color: var(--vino);
+    text-align: center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 
 .tarjeta-cancion:hover {
     transform: translateY(-10px);
 }
 
-/* Contenedor de la foto que se vuelve disco */
 .contenedor-foto-disco {
+    position: relative;
+    display: block;
     width: 120px;
     height: 120px;
     margin: 0 auto 15px;
-    position: relative;
-    border-radius: 15px; /* Cuadrada al inicio */
     overflow: hidden;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: border-radius 0.5s ease, box-shadow 0.5s ease;
 }
 
 .foto-cancion {
@@ -794,338 +547,439 @@ FINAL
     object-fit: cover;
 }
 
-/* CLASE QUE SE ACTIVA CUANDO ESTÁ SONANDO 💿🔥 */
+.tarjeta-cancion strong,
+.tarjeta-cancion small {
+    display: block;
+}
+
+.tarjeta-cancion strong {
+    margin-bottom: 5px;
+    color: var(--vino);
+    font-size: 18px;
+}
+
+.tarjeta-cancion small {
+    color: var(--rosa);
+    font-size: 14px;
+}
+
 .tarjeta-cancion.sonando {
-    background: #ffe0ea;
     border: 2px solid hotpink;
+    background: #ffe0ea;
     transform: scale(1.02);
 }
 
 .tarjeta-cancion.sonando .contenedor-foto-disco {
-    border-radius: 50%; /* Se vuelve círculo perfecto */
-    animation: rotarDisco 4s linear infinite; /* Empieza a girar */
-    border: 4px solid #111; /* Borde de vinilo */
+    border: 4px solid #111;
+    border-radius: 50%;
     box-shadow: 0 0 20px hotpink;
+    animation: rotarDisco 4s linear infinite;
 }
 
-/* El huequito del centro del vinilo */
 .tarjeta-cancion.sonando .contenedor-foto-disco::after {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 18px;
     height: 18px;
-    background: #ffe0ea; 
-    border-radius: 50%;
     border: 2px solid #111;
+    border-radius: 50%;
+    background: #ffe0ea;
+    transform: translate(-50%, -50%);
 }
 
-@keyframes rotarDisco {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.tarjeta-cancion h3 {
-    font-size: 18px;
-    color: #6d214f;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.tarjeta-cancion p {
-    font-size: 14px;
-    color: #ff006e;
-}
-
-/* Visor de texto */
 #visorDedicatoria {
-    background: rgba(255, 255, 255, 0.95);
+    max-width: 800px;
+    min-height: 180px;
+    margin: 0 auto;
     padding: 35px;
     border-radius: 25px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 0 25px rgba(0,0,0,0.15);
-    transition: all 0.5s ease;
-    min-height: 180px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 #tituloDedicatoria {
-    font-size: 24px;
-    color: #ff006e;
     margin-bottom: 15px;
-    font-weight: bold;
+    color: var(--rosa);
+    font-size: 24px;
 }
 
 #letraDedicatoria {
+    color: var(--vino);
     font-size: 20px;
-    color: #6d214f;
-    line-height: 1.8;
     font-style: italic;
+    line-height: 1.8;
     white-space: pre-line;
 }
 
-/* Adaptación para celulares */
-@media screen and (max-width: 768px) {
-    .tarjeta-cancion {
-        width: 45%;
-        padding: 15px 10px;
-    }
-    .contenedor-foto-disco { width: 90px; height: 90px; }
-    #letraDedicatoria { font-size: 17px; }
+.finalHistoria {
+    margin-top: 100px;
+    padding: 50px;
+    text-align: center;
 }
 
-/* Responsive para celulares */
-@media screen and (max-width: 768px) {
-    .tarjeta-cancion {
-        width: 45%;
-        padding: 15px 10px;
-    }
-    .disco-icono { font-size: 35px; }
-    #letraDedicatoria { font-size: 17px; }
+.finalHistoria p {
+    margin: 20px 0;
+    color: var(--blanco);
+    font-size: 24px;
 }
-/* ====================================================
-   MODO NEÓN ROMÁNTICO 🌙✨
-==================================================== */
-/* Botón flotante para cambiar de modo */
+
+#pantallaFinal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(9, 12, 31, 0.96);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#pantallaFinal.mostrar {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mensajeFinal {
+    color: white;
+    text-align: center;
+    animation: aparecerFinal 2s;
+}
+
+.mensajeFinal h1 {
+    font-size: 100px;
+}
+
+.mensajeFinal h2 {
+    margin: 30px 0;
+    font-size: 40px;
+    line-height: 1.7;
+}
+
+.mensajeFinal p {
+    font-size: 24px;
+    line-height: 1.8;
+}
+
+#btnVolver {
+    margin-top: 30px;
+    padding: 12px 30px;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+}
+
+@keyframes aparecerFinal {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.corazon-latiendo {
+    font-size: 110px !important;
+    animation: latidoEspecial 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes latidoEspecial {
+    from { transform: scale(1); filter: drop-shadow(0 0 10px var(--rosa)); }
+    to { transform: scale(1.2); filter: drop-shadow(0 0 35px deeppink); }
+}
+
 #btnModoLuna {
     position: fixed;
-    bottom: 20px;
     right: 20px;
+    bottom: 20px;
+    z-index: 10000;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    border: 2px solid white;
+    border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
-    border: 2px solid white;
     font-size: 24px;
-    padding: 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10000;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-#btnModoLuna:hover {
-    transform: scale(1.1) rotate(15deg);
-}
-
-/* --- ESTILOS CUANDO EL MODO NEÓN ESTÁ ACTIVO --- */
-body.modo-neon {
-    background: #0d0b14 !important; /* Fondo oscuro profundo */
-    transition: background 1s ease;
-}
-
-body.modo-neon .contenido h1 {
-    color: #ff007f !important;
-    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
-}
-
-body.modo-neon .seccion-playlist {
-    background: rgba(13, 11, 20, 0.6);
-    border: 2px solid #bd00ff;
-    box-shadow: 0 0 30px rgba(189, 0, 255, 0.4);
-}
-
-body.modo-neon .tarjeta-cancion {
-    background: #1a1625;
-    color: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-
-body.modo-neon .tarjeta-cancion h3 {
-    color: #00f0ff;
-    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-}
-
-body.modo-neon .tarjeta-cancion p {
-    color: #ff007f;
-}
-
-body.modo-neon .tarjeta-cancion.sonando {
-    background: #251f38;
-    border: 2px solid #00f0ff;
-}
-
-body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco {
-    box-shadow: 0 0 25px #00f0ff;
-    border: 4px solid #00f0ff;
-}
-
-body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco::after {
-    background: #251f38;
-    border: 2px solid #00f0ff;
-}
-
-body.modo-neon #visorDedicatoria {
-    background: #161224;
-    border: 1px solid #ff007f;
-    box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
-}
-
-body.modo-neon #tituloDedicatoria {
-    color: #00f0ff;
-    text-shadow: 0 0 8px #00f0ff;
-}
-
-body.modo-neon #letraDedicatoria {
-    color: #e0dbec;
-}
-
-/* Modificaciones automáticas para otras secciones en modo noche */
-body.modo-neon .carta, body.modo-neon .razones, body.modo-neon .timeline, body.modo-neon .regalo, body.modo-neon .aniversario {
-    background: rgba(26, 22, 37, 0.8) !important;
-    border: 1px solid #bd00ff;
-    color: white !important;
-    box-shadow: 0 0 20px rgba(189, 0, 255, 0.2);
-}
-body.modo-neon .carta p, body.modo-neon .timeline .descripcion {
-    color: #e0dbec !important;
-}
-/* ====================================================
-   RESPONSIVE DESIGN: OPTIMIZACIÓN PARA CELULARES 📱
-==================================================== */
-@media screen and (max-width: 768px) {
-    
-    /* 1. Ajustamos el contenedor principal para que deje aire a los lados */
-    .contenido {
-        padding: 10px !important;
-        width: 100% !important;
-        box-sizing: border-box;
-    }
-
-    /* 2. La sección de la playlist ya no se verá apretada */
-    .seccion-playlist {
-        padding: 15px !important;
-        margin: 10px auto !important;
-        width: 95% !important;
-        display: flex;
-        flex-direction: column; /* Coloca el visor y las tarjetas uno abajo del otro */
-        gap: 20px;
-    }
-
-    /* 3. Las tarjetas de las canciones se acomodan a lo ancho */
-    .contenedor-tarjetas {
-        display: flex;
-        flex-direction: column; /* Tarjetas en fila vertical, no amontonadas */
-        gap: 15px;
-        width: 100% !important;
-    }
-
-    .tarjeta-cancion {
-        width: 100% !important; /* Que ocupe todo el ancho disponible del cel */
-        box-sizing: border-box;
-        padding: 12px !important;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    /* Reducimos un tris el tamaño del disco giratorio para que quepa el texto al lado */
-    .contenedor-foto-disco {
-        width: 60px !important;
-        height: 60px !important;
-        min-width: 60px; /* Evita que el círculo se deforme o se aplaste */
-    }
-
-    .tarjeta-cancion h3 {
-        font-size: 16px !important; /* Texto más cómodo para leer en cel */
-        margin-bottom: 2px !important;
-    }
-
-    .tarjeta-cancion p {
-        font-size: 13px !important;
-    }
-
-    /* 4. Ajustamos el visor donde Danna va a leer tus dedicatorias */
-    #visorDedicatoria {
-        width: 100% !important;
-        box-sizing: border-box;
-        padding: 20px 15px !important;
-        min-height: 250px !important; /* Le da buena altura para que la letra no se salga */
-    }
-
-    #tituloDedicatoria {
-        font-size: 20px !important;
-        margin-bottom: 15px !important;
-    }
-
-    #letraDedicatoria {
-        font-size: 14px !important;
-        line-height: 1.5 !important;
-        white-space: pre-line; /* Mantiene los saltos de línea bien organizados */
-    }
-    
-    /* 5. Ajuste extra para el botón de la luna para que no tape nada importante */
-    #btnModoLuna {
-        bottom: 15px !important;
-        right: 15px !important;
-        padding: 10px !important;
-        font-size: 20px !important;
-    }
-}
-/* ====================================================
-   EFECTO PRESENCIA: MENSAJE POR INACTIVIDAD 🌙
-==================================================== */
 #efectoPresencia {
     position: fixed;
-    bottom: 80px; /* Queda arriba del botón de la luna */
     right: 20px;
-    background: rgba(13, 13, 26, 0.85); /* Fondo oscuro semitransparente */
-    border: 1px solid rgba(255, 74, 90, 0.3); /* Un toque rojo sutil */
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(255, 74, 90, 0.2);
+    bottom: 86px;
     z-index: 10000;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: 15px;
+    border: 1px solid rgba(255, 74, 90, 0.3);
+    border-radius: 12px;
+    background: rgba(13, 13, 26, 0.85);
+    box-shadow: 0 4px 15px rgba(255, 74, 90, 0.2);
     text-align: center;
-    backdrop-filter: blur(5px); /* Efecto borroso elegante detrás */
-    pointer-events: none; /* Para que si ella intenta dar click a algo abajo, no estorbe */
+    pointer-events: none;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Cuando está activo se muestra */
 #efectoPresencia.mostrar {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Cuando está oculto desaparece */
 #efectoPresencia.oculto {
     opacity: 0;
     transform: translateY(10px);
 }
 
 #efectoPresencia p {
+    margin-bottom: 4px;
+    color: #ff4a5a;
     font-size: 14px;
-    margin: 0 0 4px 0;
-    font-weight: bold;
-    color: #ff4a5a; /* Color rosa/rojo romántico */
+    font-weight: 700;
 }
 
 #efectoPresencia span {
+    color: #ccc;
     font-size: 12px;
-    color: #cccccc;
     font-style: italic;
 }
-/* ====================================================
-   ESTILO NEÓN MORADO PARA LA PREGUNTA SERIA 💖✨
-==================================================== */
-body.modo-neon .jueguito-amor {
-    background-color: #0d0d1a !important; /* Fondo negro noche */
-    border: 2px solid #b500ff !important;  /* Línea morada neón */
-    box-shadow: 0 0 15px #b500ff, inset 0 0 10px rgba(181, 0, 255, 0.3) !important; /* Brillo neón */
-    border-radius: 30px !important; /* Mantiene la misma curva que ya tenías */
+
+body.modo-neon {
+    background: var(--noche) !important;
+    transition: background 1s ease;
 }
 
-/* Forzar que todos los textos de la pregunta brillen en blanco con el modo neón */
-body.modo-neon .jueguito-amor h2,
-body.modo-neon .jueguito-amor h3,
-body.modo-neon .jueguito-amor p {
-    color: #ffffff !important;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3) !important;
+body.modo-neon .contenido h1 {
+    color: #ff007f;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
 }
-/* Forzar que el botón sea lo único clickeable en la bienvenida */
-#btnIntro {
-    position: relative !important;
-    z-index: 1000 !important;
-    pointer-events: auto !important;
+
+body.modo-neon .carta,
+body.modo-neon .razones,
+body.modo-neon .timeline,
+body.modo-neon .aniversario,
+body.modo-neon .seccion-playlist,
+body.modo-neon .jueguito-amor {
+    border: 1px solid var(--morado);
+    background: rgba(26, 22, 37, 0.8);
+    box-shadow: 0 0 22px rgba(189, 0, 255, 0.25);
+    color: white;
+}
+
+body.modo-neon .jueguito-amor {
+    border-width: 2px;
+    background: #0d0d1a;
+    box-shadow: 0 0 15px #b500ff, inset 0 0 10px rgba(181, 0, 255, 0.3);
+}
+
+body.modo-neon .carta h2,
+body.modo-neon .razones h2,
+body.modo-neon .timeline h2,
+body.modo-neon .aniversario h2,
+body.modo-neon .jueguito-amor h2,
+body.modo-neon .jueguito-amor h3 {
+    color: white;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+body.modo-neon .carta p,
+body.modo-neon .descripcion,
+body.modo-neon .mensajeAniversario {
+    color: #e0dbec;
+}
+
+body.modo-neon .tarjeta-cancion {
+    background: #1a1625;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.modo-neon .tarjeta-cancion strong {
+    color: var(--cyan);
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+
+body.modo-neon .tarjeta-cancion small {
+    color: #ff007f;
+}
+
+body.modo-neon .tarjeta-cancion.sonando {
+    border-color: var(--cyan);
+    background: #251f38;
+}
+
+body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco {
+    border-color: var(--cyan);
+    box-shadow: 0 0 25px var(--cyan);
+}
+
+body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco::after {
+    border-color: var(--cyan);
+    background: #251f38;
+}
+
+body.modo-neon #visorDedicatoria {
+    border: 1px solid #ff007f;
+    background: #161224;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+}
+
+body.modo-neon #tituloDedicatoria {
+    color: var(--cyan);
+    text-shadow: 0 0 8px var(--cyan);
+}
+
+body.modo-neon #letraDedicatoria {
+    color: #e0dbec;
+}
+
+@media (max-width: 900px) {
+    h1 { font-size: 60px; }
+    h2 { font-size: 24px; }
+    .carta { padding: 28px; }
+    .carta p { font-size: 18px; }
+    .tiempo div { width: 120px; padding: 15px; }
+    .tiempo span { font-size: 40px; }
+}
+
+@media (max-width: 768px) {
+    .contenido {
+        width: 100%;
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 48px;
+        line-height: 1.2;
+    }
+
+    h2,
+    .seccion-playlist h2 {
+        font-size: 20px;
+    }
+
+    section {
+        margin-top: 48px;
+    }
+
+    button {
+        display: block;
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .contenidoIntro h1 { font-size: 45px; }
+    .contenidoIntro p { padding: 0 15px; font-size: 20px; }
+    .luna { top: 30px; right: 30px; width: 80px; height: 80px; }
+    .frase-principal { padding: 0 10px; font-size: 22px; }
+
+    .contador,
+    .timeline,
+    .aniversario,
+    .seccion-playlist,
+    .jueguito-amor {
+        padding: 20px;
+    }
+
+    .contador h3 { font-size: 28px; }
+    .tiempo { gap: 10px; }
+    .tiempo div,
+    .contadorAniversario div {
+        width: 45%;
+    }
+
+    .tiempo span,
+    .contadorAniversario span {
+        font-size: 35px;
+    }
+
+    .tiempo p { font-size: 16px; }
+    .carta,
+    .razones {
+        padding: 22px;
+        font-size: 18px;
+    }
+
+    .carta h2 { font-size: 42px; }
+    #razon { font-size: 20px; }
+    .evento { padding-left: 25px; }
+    .fecha { font-size: 20px; }
+    .descripcion { font-size: 16px; }
+    .mensajeAniversario { font-size: 18px; }
+
+    .slider {
+        flex-direction: column;
+    }
+
+    .slider img {
+        width: 95%;
+        height: auto;
+    }
+
+    .slider button {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+
+    .contenedor-botones-juego {
+        gap: 12px;
+    }
+
+    #btnSiJuego,
+    #btnNoJuego {
+        width: auto;
+        min-width: 150px;
+        padding: 14px 20px;
+    }
+
+    .contenedor-playlist {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .tarjeta-cancion {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        padding: 12px;
+        text-align: left;
+    }
+
+    .contenedor-foto-disco {
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+        margin: 0;
+    }
+
+    .tarjeta-cancion strong { font-size: 16px; }
+    .tarjeta-cancion small { font-size: 13px; }
+
+    #visorDedicatoria {
+        min-height: 250px;
+        padding: 20px 15px;
+    }
+
+    #tituloDedicatoria { font-size: 20px; }
+    #letraDedicatoria { font-size: 14px; line-height: 1.5; }
+    .mensajeFinal h1 { font-size: 70px; }
+    .mensajeFinal h2 { font-size: 24px; }
+    .mensajeFinal p { font-size: 18px; }
+
+    #btnModoLuna {
+        right: 15px;
+        bottom: 15px;
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    #efectoPresencia {
+        right: 15px;
+        bottom: 75px;
+    }
 }
