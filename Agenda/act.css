@@ -53,7 +53,7 @@ p {
 /* Un toque especial para el cierre de la carta */
 p:last-child {
     font-weight: bold;
-    color: #ff4757;
-    text-align: right; /* Alinea el "Te amo corazón de melón" a la derecha */
+    text-align: center;
+    color: #333333;
     margin-top: 30px;
 }
