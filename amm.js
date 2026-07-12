@@ -4,17 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const byId = (id) => document.getElementById(id);
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const random = (min, max) => min + Math.random() * (max - min);
-
     const audio = byId("audio");
     const audioPlaylist = byId("audioPlaylist");
     const btnMusica = byId("btnMusica");
     const textoMusica = { play: "🎵 Música", pause: "⏸️ Pausar Música" };
     const fades = new Map();
-
     function setMusicText(isPlaying) {
         if (btnMusica) btnMusica.textContent = isPlaying ? textoMusica.pause : textoMusica.play;
     }
-
     function clearFade(audioElement) {
         const fade = fades.get(audioElement);
         if (!fade) return;
@@ -22,23 +19,19 @@ document.addEventListener("DOMContentLoaded", () => {
         fade.resolve(false);
         fades.delete(audioElement);
     }
-
     function fadeTo(audioElement, target, step = 0.05, delay = 35) {
         if (!audioElement) return Promise.resolve(false);
         clearFade(audioElement);
-
         const objetivo = clamp(target, 0, 1);
         if (Math.abs(audioElement.volume - objetivo) < 0.01) {
             audioElement.volume = objetivo;
             return Promise.resolve(true);
         }
-
         return new Promise((resolve) => {
             const direccion = objetivo > audioElement.volume ? 1 : -1;
             const timer = setInterval(() => {
                 const next = audioElement.volume + step * direccion;
                 const done = direccion > 0 ? next >= objetivo : next <= objetivo;
-
                 if (done) {
                     audioElement.volume = objetivo;
                     clearInterval(timer);
@@ -46,19 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     resolve(true);
                     return;
                 }
-
                 audioElement.volume = clamp(next, 0, 1);
             }, delay);
-
             fades.set(audioElement, { timer, resolve });
         });
     }
-
     async function fadeIn(audioElement, volume = 1) {
         if (!audioElement) return false;
         clearFade(audioElement);
         audioElement.volume = 0;
-
         try {
             await audioElement.play();
             return await fadeTo(audioElement, volume);
@@ -67,25 +56,21 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
     }
-
     async function fadeOut(audioElement) {
         if (!audioElement) return false;
         if (audioElement.paused) {
             audioElement.volume = 0;
             return true;
         }
-
         const completed = await fadeTo(audioElement, 0);
         if (completed && audioElement.volume === 0) audioElement.pause();
         return completed;
     }
-
     async function reproducirFondo(volume = 1) {
         if (!audio) return;
         const ok = await fadeIn(audio, volume);
         if (ok) setMusicText(true);
     }
-
     function crearParticula(emoji, opciones = {}) {
         const {
             clase = "petalo",
@@ -96,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
             top = "-100px",
             left = `${Math.random() * 100}vw`
         } = opciones;
-
         const el = document.createElement("div");
         el.className = clase;
         el.textContent = emoji;
@@ -104,36 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
         el.style.left = left;
         el.style.fontSize = `${random(sizeMin, sizeMax)}px`;
         el.style.animationDuration = `${random(duracionMin, duracionMax)}s`;
-
         document.body.appendChild(el);
         setTimeout(() => el.remove(), (duracionMax + 1) * 1000);
         return el;
     }
-
     function lluvia(emoji, cantidad, opciones = {}) {
         for (let i = 0; i < cantidad; i++) {
             setTimeout(() => crearParticula(emoji, opciones), i * (opciones.delay || 20));
         }
     }
-
     function iniciarIntro() {
         const btnIntro = byId("btnIntro");
         const intro = byId("intro");
         const contenido = $(".contenido");
-
         if (audio) audio.volume = 0;
         if (!btnIntro || !intro || !contenido) return;
-
         btnIntro.addEventListener("click", (event) => {
             event.stopPropagation();
             if (audio) audio.volume = 0;
-
             intro.style.opacity = "0";
             setTimeout(() => {
                 intro.style.display = "none";
                 contenido.style.display = "block";
                 contenido.style.opacity = "0";
-
                 requestAnimationFrame(() => {
                     contenido.style.opacity = "1";
                     reproducirFondo(1);
@@ -141,11 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000);
         });
     }
-
     function iniciarContador() {
         const inicio = new Date(2026, 1, 5);
         const ids = ["dias", "horas", "minutos", "segundos"];
-
         function actualizar() {
             const diff = Math.max(Date.now() - inicio.getTime(), 0);
             const valores = [
@@ -154,21 +129,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 Math.floor((diff % 3600000) / 60000),
                 Math.floor((diff % 60000) / 1000)
             ];
-
             ids.forEach((id, index) => {
                 const el = byId(id);
                 if (el) el.textContent = valores[index];
             });
         }
-
         actualizar();
         setInterval(actualizar, 1000);
     }
-
     function escribirCarta() {
         const texto = byId("texto");
         if (!texto) return;
-
         const mensaje = `Dicen que las personas son pasajeras.
 
 Pero desde que tú llegaste mi vida cambió por completo.
@@ -180,7 +151,6 @@ Gracias por existir.
 Desde el 5 de febrero de 2026 mi corazón encontró su lugar favorito.
 
 Te amo infinitamente 🖤`;
-
         let index = 0;
         function escribir() {
             if (index >= mensaje.length) return;
@@ -188,14 +158,11 @@ Te amo infinitamente 🖤`;
             index++;
             setTimeout(escribir, 35);
         }
-
         escribir();
     }
-
     function iniciarAmbiente() {
         setInterval(() => crearParticula("🌹", { duracionMin: 5, duracionMax: 10, sizeMin: 20, sizeMax: 40 }), 500);
         setInterval(() => crearParticula("❤️", { duracionMin: 4, duracionMax: 8, sizeMin: 15, sizeMax: 40 }), 300);
-
         document.addEventListener("mousemove", (event) => {
             if (Math.random() > 0.25) return;
             const brillo = crearParticula("✨", {
@@ -209,27 +176,22 @@ Te amo infinitamente 🖤`;
             });
             brillo.style.animationDuration = "0.7s";
         });
-
         byId("btnLluvia")?.addEventListener("click", () => {
             lluvia("💖", 120, { duracionMin: 3, duracionMax: 6, sizeMin: 15, sizeMax: 40, delay: 15 });
         });
     }
-
     function iniciarMusica() {
         if (!btnMusica || !audio) return;
-
         btnMusica.addEventListener("click", async () => {
             if (audio.paused) {
                 if (audioPlaylist && !audioPlaylist.paused) await detenerPlaylist();
                 await reproducirFondo(1);
                 return;
             }
-
             await fadeOut(audio);
             setMusicText(false);
         });
     }
-
     function iniciarTitulos() {
         const frases = [
             "❤️ Eres mi lugar favorito",
@@ -238,37 +200,30 @@ Te amo infinitamente 🖤`;
             "✨ Contigo todo es mejor",
             "🥹 Mi felicidad tiene tu nombre"
         ];
-
         setInterval(() => {
             document.title = frases[Math.floor(Math.random() * frases.length)];
         }, 5000);
     }
-
     function iniciarSlider() {
         const fotos = ["img/azul.jpeg", "img/verde.jpeg", "img/juntos.jpeg"];
         const imagen = byId("foto");
         const puntos = $$(".indicadores span");
         let actual = 0;
-
         function mostrarFoto(index) {
             if (!imagen) return;
             actual = (index + fotos.length) % fotos.length;
             imagen.style.opacity = "0";
-
             setTimeout(() => {
                 imagen.src = fotos[actual];
                 imagen.style.opacity = "1";
             }, 250);
-
             puntos.forEach((punto, i) => punto.classList.toggle("activo", i === actual));
         }
-
         $(".siguiente")?.addEventListener("click", () => mostrarFoto(actual + 1));
         $(".anterior")?.addEventListener("click", () => mostrarFoto(actual - 1));
         puntos.forEach((punto, i) => punto.addEventListener("click", () => mostrarFoto(i)));
         setInterval(() => mostrarFoto(actual + 1), 5000);
     }
-
     function iniciarRazones() {
         const razones = `
 Porque contigo soy feliz y todo es mejor. 🥰
@@ -372,16 +327,13 @@ Porque eres mi novia, mi mejor amiga y mi confidente, todo en una sola persona. 
 Porque amo la historia que ya escribimos y todas las hojas en blanco que nos faltan por llenar. 📖
 Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano, Dannita. ❤️
         `.trim().split("\n");
-
         const razon = byId("razon");
         const btnRazon = byId("btnRazon");
         if (!razon || !btnRazon) return;
-
         btnRazon.addEventListener("click", () => {
             const nuevaRazon = razones[Math.floor(Math.random() * razones.length)];
             razon.style.opacity = "0";
             razon.style.transform = "scale(0.95)";
-
             setTimeout(() => {
                 razon.textContent = nuevaRazon;
                 razon.style.opacity = "1";
@@ -389,22 +341,18 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
             }, 200);
         });
     }
-
     function iniciarRegalo() {
         const caja = byId("caja");
         const mensajeOculto = byId("mensajeOculto");
-
         caja?.addEventListener("click", () => {
             caja.textContent = "🖤";
             if (mensajeOculto) mensajeOculto.style.display = "block";
         });
     }
-
     function iniciarPantallaFinal() {
         const btnFinal = byId("btnFinal");
         const pantallaFinal = byId("pantallaFinal");
         const btnVolver = byId("btnVolver");
-
         btnFinal?.addEventListener("click", () => {
             btnFinal.textContent = "✨ Espera... ✨";
             setTimeout(() => {
@@ -418,37 +366,31 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
                 });
             }, 600);
         });
-
         btnVolver?.addEventListener("click", () => {
             pantallaFinal?.classList.remove("mostrar");
             if (btnFinal) btnFinal.textContent = "💖 ¿Sabes cuánto te amo? 💖";
         });
     }
-
     function iniciarJuego() {
         const btnNo = byId("btnNoJuego");
         const btnSi = byId("btnSiJuego");
         const mensajeVictoria = byId("mensajeVictoria");
         const preguntaJuego = byId("preguntaJuego");
-
         function moverBotonNo() {
             if (!btnNo) return;
             const margen = 12;
             const rect = btnNo.getBoundingClientRect();
             const maxX = Math.max(margen, window.innerWidth - rect.width - margen);
             const maxY = Math.max(margen, window.innerHeight - rect.height - margen);
-
             btnNo.style.position = "fixed";
             btnNo.style.left = `${random(margen, maxX)}px`;
             btnNo.style.top = `${random(margen, maxY)}px`;
         }
-
         btnNo?.addEventListener("pointerenter", moverBotonNo);
         btnNo?.addEventListener("touchstart", (event) => {
             event.preventDefault();
             moverBotonNo();
         });
-
         btnSi?.addEventListener("click", () => {
             if (mensajeVictoria) mensajeVictoria.style.display = "block";
             if (preguntaJuego) preguntaJuego.textContent = "¡Sabía que dirías que sí! 😍💖";
@@ -457,7 +399,6 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
             lluvia("🥰", 40, { duracionMin: 3, duracionMax: 5, sizeMin: 20, sizeMax: 40, delay: 20 });
         });
     }
-
     function iniciarModoLuna() {
         const btnModoLuna = byId("btnModoLuna");
         btnModoLuna?.addEventListener("click", () => {
@@ -465,7 +406,6 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
             btnModoLuna.textContent = activo ? "☀️" : "🌙";
         });
     }
-
     const canciones = [
         {
             titulo: "🎵 Intro de Betty la fea",
@@ -492,44 +432,35 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
             dedicatoria: `Esta canción me recuerda que pedí una mujer grandiosa y linda como tú. Ahora que estás conmigo, solo quiero cuidarte y que nunca te vayas de mi vida.`
         }
     ];
-
     let indiceCancionActual = -1;
     let tokenPlaylist = 0;
-
     async function detenerPlaylist() {
         tokenPlaylist++;
         await fadeOut(audioPlaylist);
         $$(".tarjeta-cancion").forEach((tarjeta) => tarjeta.classList.remove("sonando"));
         indiceCancionActual = -1;
     }
-
     async function cambiarCancion(indice, tarjeta) {
         const cancion = canciones[indice];
         const tituloVisor = byId("tituloDedicatoria");
         const letraVisor = byId("letraDedicatoria");
         const visor = byId("visorDedicatoria");
         if (!cancion || !audioPlaylist || !tituloVisor || !letraVisor || !visor) return;
-
         if (indiceCancionActual === indice) {
             await detenerPlaylist();
             return;
         }
-
         const token = ++tokenPlaylist;
         if (audio && !audio.paused) {
             fadeOut(audio).then(() => setMusicText(false));
         }
-
         await fadeOut(audioPlaylist);
         if (token !== tokenPlaylist) return;
-
         $$(".tarjeta-cancion").forEach((item) => item.classList.remove("sonando"));
         tarjeta?.classList.add("sonando");
         indiceCancionActual = indice;
-
         visor.style.opacity = "0.3";
         visor.style.transform = "scale(0.98)";
-
         setTimeout(() => {
             if (token !== tokenPlaylist) return;
             tituloVisor.textContent = cancion.titulo;
@@ -540,44 +471,35 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
             visor.style.transform = "scale(1)";
         }, 300);
     }
-
     function iniciarPlaylist() {
         $$(".tarjeta-cancion").forEach((tarjeta, index) => {
             const indice = Number(tarjeta.dataset.cancion ?? index);
             tarjeta.addEventListener("click", () => cambiarCancion(indice, tarjeta));
         });
-
         window.cambiarCancion = cambiarCancion;
     }
-
     function iniciarPresencia() {
         const alerta = byId("efectoPresencia");
         const tiempoEspera = 20000;
         let temporizador;
-
         function mostrarMensaje() {
             alerta?.classList.remove("oculto");
             alerta?.classList.add("mostrar");
         }
-
         function reiniciar() {
             clearTimeout(temporizador);
             temporizador = setTimeout(mostrarMensaje, tiempoEspera);
         }
-
         function ocultarMensaje() {
             alerta?.classList.remove("mostrar");
             alerta?.classList.add("oculto");
             reiniciar();
         }
-
         ["mousemove", "mousedown", "touchstart", "scroll", "keydown"].forEach((evento) => {
             window.addEventListener(evento, ocultarMensaje, { passive: true });
         });
-
         reiniciar();
     }
-
     iniciarIntro();
     iniciarContador();
     escribirCarta();

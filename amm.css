@@ -7,13 +7,11 @@
     --noche: #0d0b14;
     --blanco: #fff;
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 body {
     min-height: 100vh;
     overflow-x: hidden;
@@ -22,7 +20,6 @@ body {
     background-size: 400% 400%;
     animation: fondo 15s ease infinite;
 }
-
 button {
     margin: 25px;
     padding: 18px 45px;
@@ -36,17 +33,14 @@ button {
     font-size: 20px;
     transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
 }
-
 button:hover {
     transform: scale(1.08);
     box-shadow: 0 0 40px deeppink;
 }
-
 button:disabled {
     cursor: default;
     opacity: 0.75;
 }
-
 h1 {
     color: var(--blanco);
     font-family: "Great Vibes", cursive;
@@ -54,7 +48,6 @@ h1 {
     text-shadow: 0 0 10px hotpink, 0 0 20px hotpink, 0 0 40px deeppink;
     animation: latido 2s infinite;
 }
-
 h2 {
     margin-top: 15px;
     color: var(--blanco);
@@ -62,11 +55,9 @@ h2 {
     font-weight: 300;
     letter-spacing: 2px;
 }
-
 section {
     margin-top: 70px;
 }
-
 .contenido {
     display: none;
     width: 90%;
@@ -83,32 +74,26 @@ section {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
 @keyframes latido {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
 }
-
 @keyframes aparecer {
     from { opacity: 0; transform: translateY(80px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes caer {
     from { transform: translateY(-100px) rotate(0deg); opacity: 1; }
     to { transform: translateY(120vh) rotate(720deg); opacity: 0; }
 }
-
 @keyframes brilloCursor {
     from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     to { transform: translate(-50%, -90%) scale(0.4); opacity: 0; }
 }
-
 @keyframes rotarDisco {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
 #intro {
     position: fixed;
     inset: 0;
@@ -121,7 +106,6 @@ section {
     opacity: 1;
     transition: opacity 1s ease;
 }
-
 #intro::before {
     content: "";
     position: absolute;
@@ -132,12 +116,10 @@ section {
     animation: parpadeo 3s infinite alternate;
     pointer-events: none;
 }
-
 @keyframes parpadeo {
     from { opacity: 0.3; }
     to { opacity: 1; }
 }
-
 .luna {
     position: absolute;
     top: 70px;
@@ -149,30 +131,25 @@ section {
     box-shadow: 0 0 30px white, 0 0 80px white;
     opacity: 0.9;
 }
-
 .contenidoIntro {
     padding: 20px;
     text-align: center;
     animation: aparecer 2s;
 }
-
 .contenidoIntro h1 {
     margin-bottom: 30px;
     font-size: 80px;
 }
-
 .contenidoIntro p {
     margin-bottom: 40px;
     color: var(--blanco);
     font-size: 28px;
     line-height: 1.8;
 }
-
 #btnIntro {
     position: relative;
     z-index: 2;
 }
-
 #estrellas {
     position: fixed;
     inset: 0;
@@ -182,28 +159,23 @@ section {
     pointer-events: none;
     animation: moverEstrellas 40s linear infinite;
 }
-
 @keyframes moverEstrellas {
     from { transform: translateY(0); }
     to { transform: translateY(100px); }
 }
-
 .petalo,
 .brillo-cursor {
     position: fixed;
     z-index: 999;
     pointer-events: none;
 }
-
 .petalo {
     top: -100px;
     animation: caer linear forwards;
 }
-
 .brillo-cursor {
     animation: brilloCursor 0.7s ease-out forwards;
 }
-
 .frase-principal {
     margin-top: 30px;
     color: var(--blanco);
@@ -212,7 +184,6 @@ section {
     text-shadow: 0 0 10px hotpink;
     animation: latido 3s infinite;
 }
-
 .contador,
 .timeline,
 .aniversario,
@@ -223,13 +194,11 @@ section {
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(20px);
 }
-
 .contador h3 {
     margin-bottom: 30px;
     color: var(--blanco);
     font-size: 35px;
 }
-
 .tiempo,
 .contadorAniversario {
     display: flex;
@@ -237,7 +206,6 @@ section {
     justify-content: center;
     gap: 25px;
 }
-
 .tiempo div,
 .contadorAniversario div {
     width: 150px;
@@ -247,25 +215,21 @@ section {
     box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-
 .tiempo div:hover {
     transform: translateY(-12px) scale(1.05);
     box-shadow: 0 0 35px hotpink;
 }
-
 .tiempo span,
 .contadorAniversario span {
     color: var(--rosa);
     font-size: 50px;
     font-weight: 700;
 }
-
 .tiempo p,
 .contadorAniversario p {
     margin-top: 8px;
     font-size: 18px;
 }
-
 .carta,
 .razones {
     padding: 45px;
@@ -276,27 +240,22 @@ section {
     line-height: 2;
     transition: transform 0.35s ease;
 }
-
 .carta:hover {
     transform: scale(1.01);
 }
-
 .carta h2 {
     margin-bottom: 25px;
     color: var(--rosa);
     font-family: "Great Vibes", cursive;
     font-size: 55px;
 }
-
 .carta p {
     font-size: 22px;
     white-space: pre-line;
 }
-
 .razones h2 {
     color: var(--vino);
 }
-
 #razon {
     min-height: 90px;
     margin: 40px 0;
@@ -306,11 +265,9 @@ section {
     line-height: 1.7;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
-
 .timeline h2 {
     margin-bottom: 50px;
 }
-
 .evento {
     position: relative;
     max-width: 700px;
@@ -319,7 +276,6 @@ section {
     border-left: 4px solid white;
     text-align: left;
 }
-
 .evento::before {
     content: "❤️";
     position: absolute;
@@ -327,36 +283,30 @@ section {
     left: -18px;
     font-size: 25px;
 }
-
 .fecha {
     margin-bottom: 10px;
     color: var(--blanco);
     font-size: 24px;
     font-weight: 700;
 }
-
 .descripcion {
     color: var(--blanco);
     font-size: 18px;
     line-height: 1.8;
 }
-
 .regalo {
     padding: 40px;
     text-align: center;
 }
-
 #caja {
     font-size: 120px;
     cursor: pointer;
     animation: latido 2s infinite;
     transition: transform 0.35s ease;
 }
-
 #caja:hover {
     transform: scale(1.2) rotate(8deg);
 }
-
 #mensajeOculto {
     display: none;
     margin-top: 30px;
@@ -369,35 +319,29 @@ section {
     line-height: 1.8;
     animation: aparecerRegalo 0.8s;
 }
-
 @keyframes aparecerRegalo {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 .contadorAniversario {
     margin-top: 30px;
 }
-
 .contadorAniversario div {
     width: 140px;
     padding: 20px;
 }
-
 .mensajeAniversario {
     margin-top: 30px;
     color: var(--blanco);
     font-size: 22px;
     line-height: 1.8;
 }
-
 .slider {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
 }
-
 .slider img {
     width: 350px;
     height: 500px;
@@ -407,11 +351,9 @@ section {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     transition: opacity 0.35s ease, transform 0.35s ease;
 }
-
 .slider img:hover {
     transform: scale(1.03);
 }
-
 .slider button {
     width: 60px;
     height: 60px;
@@ -419,14 +361,12 @@ section {
     border-radius: 50%;
     font-size: 25px;
 }
-
 .indicadores {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
 }
-
 .indicadores span {
     width: 14px;
     height: 14px;
@@ -436,12 +376,10 @@ section {
     cursor: pointer;
     transition: opacity 0.35s ease, transform 0.35s ease;
 }
-
 .indicadores .activo {
     opacity: 1;
     transform: scale(1.5);
 }
-
 .jueguito-amor {
     position: relative;
     min-height: 350px;
@@ -451,18 +389,15 @@ section {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
-
 .jueguito-amor h2 {
     color: var(--rosa);
     font-size: 28px;
 }
-
 .jueguito-amor h3 {
     margin: 10px 0 40px;
     color: var(--vino);
     font-size: 32px;
 }
-
 .contenedor-botones-juego {
     display: flex;
     flex-wrap: wrap;
@@ -470,19 +405,16 @@ section {
     gap: 30px;
     min-height: 80px;
 }
-
 #btnSiJuego {
     background: linear-gradient(90deg, #00b4d8, #0077b6);
     box-shadow: 0 0 20px rgba(0, 119, 182, 0.5);
 }
-
 #btnNoJuego {
     z-index: 999;
     background: linear-gradient(90deg, #7209b7, #f72585);
     box-shadow: 0 0 20px rgba(114, 9, 183, 0.5);
     transition: left 0.2s ease, top 0.2s ease, transform 0.35s ease, box-shadow 0.35s ease;
 }
-
 #mensajeVictoria {
     display: none;
     margin-top: 30px;
@@ -492,7 +424,6 @@ section {
     font-weight: 700;
     animation: aparecerRegalo 0.5s ease forwards;
 }
-
 .seccion-playlist h2 {
     margin-bottom: 5px;
     text-shadow: 0 0 10px hotpink;
@@ -503,7 +434,6 @@ section {
     color: #ffe0ea;
     font-size: 18px;
 }
-
 .contenedor-playlist {
     display: flex;
     flex-wrap: wrap;
@@ -511,7 +441,6 @@ section {
     gap: 20px;
     margin-bottom: 40px;
 }
-
 .tarjeta-cancion {
     display: block;
     width: 220px;
@@ -524,11 +453,9 @@ section {
     text-align: center;
     transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
-
 .tarjeta-cancion:hover {
     transform: translateY(-10px);
 }
-
 .contenedor-foto-disco {
     position: relative;
     display: block;
@@ -540,42 +467,35 @@ section {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: border-radius 0.5s ease, box-shadow 0.5s ease;
 }
-
 .foto-cancion {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 .tarjeta-cancion strong,
 .tarjeta-cancion small {
     display: block;
 }
-
 .tarjeta-cancion strong {
     margin-bottom: 5px;
     color: var(--vino);
     font-size: 18px;
 }
-
 .tarjeta-cancion small {
     color: var(--rosa);
     font-size: 14px;
 }
-
 .tarjeta-cancion.sonando {
     border: 2px solid hotpink;
     background: #ffe0ea;
     transform: scale(1.02);
 }
-
 .tarjeta-cancion.sonando .contenedor-foto-disco {
     border: 4px solid #111;
     border-radius: 50%;
     box-shadow: 0 0 20px hotpink;
     animation: rotarDisco 4s linear infinite;
 }
-
 .tarjeta-cancion.sonando .contenedor-foto-disco::after {
     content: "";
     position: absolute;
@@ -588,7 +508,6 @@ section {
     background: #ffe0ea;
     transform: translate(-50%, -50%);
 }
-
 #visorDedicatoria {
     max-width: 800px;
     min-height: 180px;
@@ -599,13 +518,11 @@ section {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     transition: opacity 0.35s ease, transform 0.35s ease;
 }
-
 #tituloDedicatoria {
     margin-bottom: 15px;
     color: var(--rosa);
     font-size: 24px;
 }
-
 #letraDedicatoria {
     color: var(--vino);
     font-size: 20px;
@@ -613,19 +530,16 @@ section {
     line-height: 1.8;
     white-space: pre-line;
 }
-
 .finalHistoria {
     margin-top: 100px;
     padding: 50px;
     text-align: center;
 }
-
 .finalHistoria p {
     margin: 20px 0;
     color: var(--blanco);
     font-size: 24px;
 }
-
 #pantallaFinal {
     position: fixed;
     inset: 0;
@@ -640,33 +554,27 @@ section {
     visibility: hidden;
     transition: opacity 1.2s ease, visibility 1.2s ease;
 }
-
 #pantallaFinal.mostrar {
     opacity: 1;
     visibility: visible;
 }
-
 .mensajeFinal {
     color: white;
     text-align: center;
     animation: aparecerFinal 2s;
 }
-
 .mensajeFinal h1 {
     font-size: 100px;
 }
-
 .mensajeFinal h2 {
     margin: 30px 0;
     font-size: 40px;
     line-height: 1.7;
 }
-
 .mensajeFinal p {
     font-size: 24px;
     line-height: 1.8;
 }
-
 #btnVolver {
     margin-top: 30px;
     padding: 12px 30px;
@@ -674,22 +582,18 @@ section {
     background: rgba(255, 255, 255, 0.2);
     font-size: 16px;
 }
-
 @keyframes aparecerFinal {
     from { opacity: 0; transform: scale(0.8); }
     to { opacity: 1; transform: scale(1); }
 }
-
 .corazon-latiendo {
     font-size: 110px !important;
     animation: latidoEspecial 1.5s infinite alternate ease-in-out;
 }
-
 @keyframes latidoEspecial {
     from { transform: scale(1); filter: drop-shadow(0 0 10px var(--rosa)); }
     to { transform: scale(1.2); filter: drop-shadow(0 0 35px deeppink); }
 }
-
 #btnModoLuna {
     position: fixed;
     right: 20px;
@@ -705,7 +609,6 @@ section {
     backdrop-filter: blur(10px);
     font-size: 24px;
 }
-
 #efectoPresencia {
     position: fixed;
     right: 20px;
@@ -721,40 +624,33 @@ section {
     backdrop-filter: blur(5px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
 #efectoPresencia.mostrar {
     opacity: 1;
     transform: translateY(0);
 }
-
 #efectoPresencia.oculto {
     opacity: 0;
     transform: translateY(10px);
 }
-
 #efectoPresencia p {
     margin-bottom: 4px;
     color: #ff4a5a;
     font-size: 14px;
     font-weight: 700;
 }
-
 #efectoPresencia span {
     color: #ccc;
     font-size: 12px;
     font-style: italic;
 }
-
 body.modo-neon {
     background: var(--noche) !important;
     transition: background 1s ease;
 }
-
 body.modo-neon .contenido h1 {
     color: #ff007f;
     text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
 }
-
 body.modo-neon .carta,
 body.modo-neon .razones,
 body.modo-neon .timeline,
@@ -766,13 +662,11 @@ body.modo-neon .jueguito-amor {
     box-shadow: 0 0 22px rgba(189, 0, 255, 0.25);
     color: white;
 }
-
 body.modo-neon .jueguito-amor {
     border-width: 2px;
     background: #0d0d1a;
     box-shadow: 0 0 15px #b500ff, inset 0 0 10px rgba(181, 0, 255, 0.3);
 }
-
 body.modo-neon .carta h2,
 body.modo-neon .razones h2,
 body.modo-neon .timeline h2,
@@ -782,57 +676,46 @@ body.modo-neon .jueguito-amor h3 {
     color: white;
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
 }
-
 body.modo-neon .carta p,
 body.modo-neon .descripcion,
 body.modo-neon .mensajeAniversario {
     color: #e0dbec;
 }
-
 body.modo-neon .tarjeta-cancion {
     background: #1a1625;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
-
 body.modo-neon .tarjeta-cancion strong {
     color: var(--cyan);
     text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
 }
-
 body.modo-neon .tarjeta-cancion small {
     color: #ff007f;
 }
-
 body.modo-neon .tarjeta-cancion.sonando {
     border-color: var(--cyan);
     background: #251f38;
 }
-
 body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco {
     border-color: var(--cyan);
     box-shadow: 0 0 25px var(--cyan);
 }
-
 body.modo-neon .tarjeta-cancion.sonando .contenedor-foto-disco::after {
     border-color: var(--cyan);
     background: #251f38;
 }
-
 body.modo-neon #visorDedicatoria {
     border: 1px solid #ff007f;
     background: #161224;
     box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
 }
-
 body.modo-neon #tituloDedicatoria {
     color: var(--cyan);
     text-shadow: 0 0 8px var(--cyan);
 }
-
 body.modo-neon #letraDedicatoria {
     color: #e0dbec;
 }
-
 @media (max-width: 900px) {
     h1 { font-size: 60px; }
     h2 { font-size: 24px; }
@@ -841,27 +724,22 @@ body.modo-neon #letraDedicatoria {
     .tiempo div { width: 120px; padding: 15px; }
     .tiempo span { font-size: 40px; }
 }
-
 @media (max-width: 768px) {
     .contenido {
         width: 100%;
         padding: 20px 10px;
     }
-
     h1 {
         font-size: 48px;
         line-height: 1.2;
     }
-
     h2,
     .seccion-playlist h2 {
         font-size: 20px;
     }
-
     section {
         margin-top: 48px;
     }
-
     button {
         display: block;
         width: 95%;
@@ -869,12 +747,10 @@ body.modo-neon #letraDedicatoria {
         padding: 15px;
         font-size: 18px;
     }
-
     .contenidoIntro h1 { font-size: 45px; }
     .contenidoIntro p { padding: 0 15px; font-size: 20px; }
     .luna { top: 30px; right: 30px; width: 80px; height: 80px; }
     .frase-principal { padding: 0 10px; font-size: 22px; }
-
     .contador,
     .timeline,
     .aniversario,
@@ -882,64 +758,53 @@ body.modo-neon #letraDedicatoria {
     .jueguito-amor {
         padding: 20px;
     }
-
     .contador h3 { font-size: 28px; }
     .tiempo { gap: 10px; }
     .tiempo div,
     .contadorAniversario div {
         width: 45%;
     }
-
     .tiempo span,
     .contadorAniversario span {
         font-size: 35px;
     }
-
     .tiempo p { font-size: 16px; }
     .carta,
     .razones {
         padding: 22px;
         font-size: 18px;
     }
-
     .carta h2 { font-size: 42px; }
     #razon { font-size: 20px; }
     .evento { padding-left: 25px; }
     .fecha { font-size: 20px; }
     .descripcion { font-size: 16px; }
     .mensajeAniversario { font-size: 18px; }
-
     .slider {
         flex-direction: column;
     }
-
     .slider img {
         width: 95%;
         height: auto;
     }
-
     .slider button {
         width: 55px;
         height: 55px;
         font-size: 22px;
     }
-
     .contenedor-botones-juego {
         gap: 12px;
     }
-
     #btnSiJuego,
     #btnNoJuego {
         width: auto;
         min-width: 150px;
         padding: 14px 20px;
     }
-
     .contenedor-playlist {
         flex-direction: column;
         gap: 15px;
     }
-
     .tarjeta-cancion {
         display: flex;
         align-items: center;
@@ -948,28 +813,23 @@ body.modo-neon #letraDedicatoria {
         padding: 12px;
         text-align: left;
     }
-
     .contenedor-foto-disco {
         width: 60px;
         min-width: 60px;
         height: 60px;
         margin: 0;
     }
-
     .tarjeta-cancion strong { font-size: 16px; }
     .tarjeta-cancion small { font-size: 13px; }
-
     #visorDedicatoria {
         min-height: 250px;
         padding: 20px 15px;
     }
-
     #tituloDedicatoria { font-size: 20px; }
     #letraDedicatoria { font-size: 14px; line-height: 1.5; }
     .mensajeFinal h1 { font-size: 70px; }
     .mensajeFinal h2 { font-size: 24px; }
     .mensajeFinal p { font-size: 18px; }
-
     #btnModoLuna {
         right: 15px;
         bottom: 15px;
@@ -977,7 +837,6 @@ body.modo-neon #letraDedicatoria {
         height: 48px;
         font-size: 20px;
     }
-
     #efectoPresencia {
         right: 15px;
         bottom: 75px;
