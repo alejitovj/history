@@ -140,17 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function escribirCarta() {
         const texto = byId("texto");
         if (!texto) return;
-        const mensaje = `Dicen que las personas son pasajeras.
-
-Pero desde que tú llegaste mi vida cambió por completo.
-
-Cada día contigo es una aventura y un recuerdo hermoso.
-
-Gracias por existir.
-
-Desde el 5 de febrero de 2026 mi corazón encontró su lugar favorito.
-
-Te amo infinitamente 🖤`;
+        const mensaje = `Amor mio, eres y serás a la unica persona que amaré por el resto de mis vidas, si llegas a ver esto solo daté cuenta de lo mucho que te amo y quiero que sigas a mi lado, que te amo infinitamente sin importar el qué, besitos 🖤 `;
         let index = 0;
         function escribir() {
             if (index >= mensaje.length) return;
@@ -196,7 +186,7 @@ Te amo infinitamente 🖤`;
         const frases = [
             "❤️ Eres mi lugar favorito",
             "🌹 Gracias por existir",
-            "💖 Siempre te elegiría",
+            "🖤 Siempre te elegiría",
             "✨ Contigo todo es mejor",
             "🥹 Mi felicidad tiene tu nombre"
         ];
@@ -357,7 +347,7 @@ Porque, en resumen, no me imagino este mundo ni ningún otro si no es de tu mano
             btnFinal.textContent = "✨ Espera... ✨";
             setTimeout(() => {
                 pantallaFinal?.classList.add("mostrar");
-                lluvia(Math.random() > 0.5 ? "💖" : "❤️", 150, {
+                lluvia(Math.random() > 0.5 ? "🖤" : "❤️", 150, {
                     duracionMin: 2,
                     duracionMax: 5,
                     sizeMin: 20,
